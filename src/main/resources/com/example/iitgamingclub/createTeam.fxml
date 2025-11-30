@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<VBox spacing="10" xmlns:fx="http://javafx.com/fxml" fx:controller="com.example.iitgamingclub.controller.createTeamController" prefWidth="500" prefHeight="600">
+    <padding><Insets top="10" right="10" bottom="10" left="10"/></padding>
+    <Label text="Generate Teams" style="-fx-font-size: 18px; -fx-font-weight: bold;"/>
+
+    <HBox spacing="10" alignment="CENTER_LEFT">
+        <Label text="Source File:"/>
+        <ComboBox fx:id="cmbFiles" prefWidth="200"/>
+    </HBox>
+
+    <HBox spacing="10" alignment="CENTER_LEFT">
+        <Label text="Members per Team (N):"/>
+        <TextField fx:id="txtTeamSize" prefWidth="50"/>
+        <Button text="Generate" onAction="#generate"/>
+    </HBox>
+
+    <TextArea fx:id="txtOutput" VBox.vgrow="ALWAYS" editable="false" style="-fx-font-family: monospace;"/>
+</VBox>

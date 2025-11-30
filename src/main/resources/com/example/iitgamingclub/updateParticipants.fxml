@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<VBox spacing="10" alignment="CENTER" xmlns:fx="http://javafx.com/fxml" fx:controller="com.example.iitgamingclub.controller.updateParticipantsController" prefWidth="350" prefHeight="300">
+    <Label text="Update Details" style="-fx-font-weight: bold;"/>
+
+    <HBox spacing="5" alignment="CENTER">
+        <TextField fx:id="txtSearchId" promptText="ID to Update"/>
+        <Button text="Search" onAction="#searchParticipant"/>
+    </HBox>
+    <Separator/>
+
+    <TextField fx:id="txtName" promptText="Name" disable="true" maxWidth="250"/>
+    <TextField fx:id="txtEmail" promptText="Email" disable="true" maxWidth="250"/>
+    <ComboBox fx:id="cmbGame" promptText="Preferred Game" disable="true" prefWidth="250"/>
+
+    <HBox spacing="10" alignment="CENTER">
+        <Button text="Cancel" onAction="#cancel"/>
+        <Button fx:id="btnUpdate" text="Confirm Update" onAction="#updateDetails" disable="true"/>
+    </HBox>
+</VBox>

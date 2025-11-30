@@ -1,0 +1,91 @@
+/* --- 1. NORMAL BUTTONS (Add, Remove, Update, Show, Import) --- */
+.button-normal {
+    -fx-background-color: transparent;
+    -fx-border-color: white;
+    -fx-border-radius: 50;
+    -fx-background-radius: 50;
+    -fx-border-width: 1.5;
+    -fx-text-fill: white;
+    -fx-cursor: hand;
+    -fx-font-family: "Consolas";
+    -fx-font-weight: bold;
+    -fx-font-size: 19px;
+}
+
+.button-normal:hover {
+    -fx-background-color: white;
+    -fx-text-fill: black;
+    -fx-border-color: white;
+}
+
+/* --- 2. GENERATE TEAMS BUTTON --- */
+.button-generate {
+    -fx-background-color: transparent;
+    -fx-border-color: #cfff04;
+    -fx-border-radius: 50;
+    -fx-background-radius: 50;
+    -fx-border-width: 1.5;
+    -fx-text-fill: #cfff04;
+    -fx-cursor: hand;
+    -fx-font-family: "Consolas";
+    -fx-font-weight: bold;
+    -fx-font-size: 19px;
+}
+
+.button-generate:hover {
+    -fx-background-color: #cfff04;
+    -fx-text-fill: black;
+    -fx-border-color: #cfff04;
+}
+
+/* --- 3. EXIT BUTTON --- */
+.button-exit {
+    -fx-background-color: transparent;
+    -fx-border-color: red;
+    -fx-border-radius: 50;
+    -fx-background-radius: 50;
+    -fx-border-width: 1.5;
+    -fx-text-fill: red;
+    -fx-cursor: hand;
+    -fx-font-family: "Consolas";
+    -fx-font-weight: bold;
+    -fx-font-size: 19px;
+}
+
+.button-exit:hover {
+    -fx-background-color: red;
+    -fx-text-fill: white;
+    -fx-border-color: red;
+}
+
+/* Window Control Buttons (Min/Max) */
+.window-btn {
+    -fx-background-color: transparent;
+    -fx-text-fill: #aaaaaa;
+    -fx-font-family: "Consolas";
+    -fx-font-weight: bold;
+    -fx-font-size: 14px;
+    -fx-cursor: hand;
+    -fx-pref-width: 40px;
+}
+
+.window-btn:hover {
+    -fx-background-color: #cfff04;
+    -fx-text-fill: black;
+}
+
+/* Close Button (Special Red Hover) */
+.window-btn-close {
+    -fx-background-color: transparent;
+    -fx-text-fill: #aaaaaa;
+    -fx-font-family: "Consolas";
+    -fx-font-weight: bold;
+    -fx-font-size: 14px;
+    -fx-cursor: hand;
+    -fx-pref-width: 40px;
+}
+
+.window-btn-close:hover {
+    -fx-background-color: red;
+    -fx-text-fill: white;
+}
