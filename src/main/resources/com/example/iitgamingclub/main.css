@@ -156,3 +156,113 @@
     -fx-text-fill: white;
     -fx-font-family: "Consolas";
 }
+
+/* GLOBAL STYLES & DEFAULT FONT */
+.root {
+    -fx-background-color: black;
+    -fx-font-family: "Consolas"; /* Sets Consolas for the entire app */
+    -fx-text-fill: white;
+}
+
+/* --- HEADER STYLE (ROG FONT) --- */
+.header-label {
+    -fx-font-family: "ROGFonts-Regular";
+    -fx-text-fill: #cfff04;
+    -fx-font-size: 24px;
+}
+
+/* --- COMBO BOX STYLING (Black BG + Neon Text) --- */
+.combo-box-gamer {
+    -fx-background-color: black;
+    -fx-border-color: #cfff04;
+    -fx-border-radius: 50;
+    -fx-background-radius: 50;
+    -fx-border-width: 2;
+    -fx-prompt-text-fill: #aaaaaa;
+}
+
+/* The text inside the combo box button */
+.combo-box-gamer .cell {
+    -fx-text-fill: #cfff04; /* Neon Yellow Text */
+    -fx-background-color: transparent;
+    -fx-font-family: "Consolas";
+}
+
+/* The arrow button */
+.combo-box-gamer .arrow {
+    -fx-background-color: #cfff04;
+}
+.combo-box-gamer .arrow-button {
+    -fx-background-color: transparent;
+}
+
+/* --- THE DROPDOWN POPUP LIST --- */
+.combo-box-popup .list-view {
+    -fx-background-color: black;
+    -fx-border-color: #cfff04;
+    -fx-border-width: 1;
+}
+
+/* Items in the dropdown */
+.combo-box-popup .list-cell {
+    -fx-text-fill: #cfff04; /* Neon Yellow Text */
+    -fx-background-color: black;
+    -fx-font-family: "Consolas";
+    -fx-padding: 5 10 5 10;
+}
+
+/* Hover state for dropdown items */
+.combo-box-popup .list-cell:filled:hover {
+    -fx-background-color: #cfff04;
+    -fx-text-fill: black; /* Black text on Neon background when hovering */
+}
+
+/* --- TEXT FIELDS --- */
+.text-field-gamer {
+    -fx-background-color: rgba(0,0,0,0.5);
+    -fx-text-fill: white; /* Input text color */
+    -fx-border-color: #cfff04;
+    -fx-border-radius: 50;
+    -fx-background-radius: 50;
+    -fx-border-width: 2;
+    -fx-font-family: "Consolas";
+    -fx-font-size: 14px;
+    -fx-padding: 10 20;
+}
+
+/* --- BUTTONS --- */
+.button-normal, .button-generate, .button-exit, .window-btn, .window-btn-close {
+    -fx-font-family: "Consolas";
+    -fx-font-weight: bold;
+}
+
+/* (Include your previous button colors here, forcing Consolas) */
+.button-generate {
+    -fx-background-color: transparent;
+    -fx-border-color: #cfff04;
+    -fx-border-radius: 50;
+    -fx-background-radius: 50;
+    -fx-border-width: 1.5;
+    -fx-text-fill: #cfff04;
+    -fx-cursor: hand;
+    -fx-font-size: 19px;
+}
+.button-generate:hover {
+    -fx-background-color: #cfff04;
+    -fx-text-fill: black;
+}
+
+.button-exit {
+    -fx-background-color: transparent;
+    -fx-border-color: red;
+    -fx-border-radius: 50;
+    -fx-background-radius: 50;
+    -fx-border-width: 1.5;
+    -fx-text-fill: red;
+    -fx-cursor: hand;
+    -fx-font-size: 19px;
+}
+.button-exit:hover {
+    -fx-background-color: red;
+    -fx-text-fill: white;
+}

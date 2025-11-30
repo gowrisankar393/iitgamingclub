@@ -1,8 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Slider?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
 <StackPane fx:id="rootPane" prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: black;" stylesheets="@main.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.iitgamingclub.controller.addParticipantsController">
@@ -26,24 +36,25 @@
                 <ScrollPane fitToWidth="true" style="-fx-background: transparent; -fx-background-color: transparent;">
                     <content>
                         <VBox alignment="TOP_CENTER" spacing="15.0" style="-fx-background-color: transparent;">
-                            <padding><Insets top="30" bottom="30"/></padding>
+                            <padding><Insets bottom="30" top="30" /></padding>
                             <VBox alignment="TOP_CENTER" maxWidth="700.0" spacing="15.0">
-                                <Label text="&lt;&lt;&lt; ADD PARTICIPANT &gt;&gt;&gt;" textFill="#cfff04"><font><Font name="ROGFonts-Regular" size="24.0" /></font></Label>
-                                <TextField fx:id="txtName" promptText="Full Name" styleClass="text-field-gamer" />
-                                <TextField fx:id="txtEmail" promptText="Email" styleClass="text-field-gamer" />
-                                <HBox spacing="15"><ComboBox fx:id="cmbGame" maxWidth="Infinity" promptText="Game" styleClass="combo-box-gamer" HBox.hgrow="ALWAYS"/><TextField fx:id="txtSkill" promptText="Skill (1-10)" styleClass="text-field-gamer" prefWidth="150"/></HBox>
-                                <ComboBox fx:id="cmbRole" maxWidth="Infinity" promptText="Role" styleClass="combo-box-gamer" />
-                                <Label text="-- SURVEY --" textFill="white" underline="true"><font><Font name="ROGFonts-Regular" size="14"/></font></Label>
-                                <Label text="Q1: I enjoy taking the lead." textFill="#aaa"><font><Font name="Consolas" size="14"/></font></Label><Slider fx:id="q1" max="5" min="1" showTickLabels="true" showTickMarks="true" snapToTicks="true" majorTickUnit="1" blockIncrement="1"/>
-                                <Label text="Q2: I prefer analyzing situations." textFill="#aaa"><font><Font name="Consolas" size="14"/></font></Label><Slider fx:id="q2" max="5" min="1" showTickLabels="true" showTickMarks="true" snapToTicks="true" majorTickUnit="1" blockIncrement="1"/>
-                                <Label text="Q3: I work well with others." textFill="#aaa"><font><Font name="Consolas" size="14"/></font></Label><Slider fx:id="q3" max="5" min="1" showTickLabels="true" showTickMarks="true" snapToTicks="true" majorTickUnit="1" blockIncrement="1"/>
-                                <Label text="Q4: I am calm under pressure." textFill="#aaa"><font><Font name="Consolas" size="14"/></font></Label><Slider fx:id="q4" max="5" min="1" showTickLabels="true" showTickMarks="true" snapToTicks="true" majorTickUnit="1" blockIncrement="1"/>
-                                <Label text="Q5: I like making quick decisions." textFill="#aaa"><font><Font name="Consolas" size="14"/></font></Label><Slider fx:id="q5" max="5" min="1" showTickLabels="true" showTickMarks="true" snapToTicks="true" majorTickUnit="1" blockIncrement="1"/>
-                                <Button text="CALCULATE SCORE" onAction="#calculatePersonality" maxWidth="Infinity" styleClass="button-generate"/>
-                                <Label fx:id="lblResult" text="..." textFill="white"><font><Font name="Consolas Bold" size="16"/></font></Label>
-                                <HBox spacing="15" alignment="CENTER_RIGHT">
-                                    <Button text="CANCEL" onAction="#cancel" styleClass="button-exit"/>
-                                    <Button fx:id="btnSave" text="SAVE" onAction="#saveParticipant" disable="true" styleClass="button-generate"/>
+                                <Label text="&lt;&lt;&lt; ADD PARTICIPANT &gt;&gt;&gt;" textFill="#cfff04"><font><Font name="ROGFonts-Regular" size="36.0" /></font></Label>
+                                <TextField fx:id="txtName" prefHeight="41.0" prefWidth="722.0" promptText="Full Name" styleClass="text-field-gamer" />
+                                <TextField fx:id="txtEmail" prefHeight="41.0" prefWidth="709.0" promptText="Email" styleClass="text-field-gamer" />
+                                <HBox spacing="15"><ComboBox fx:id="cmbGame" maxWidth="Infinity" prefHeight="40.0" prefWidth="534.0" promptText="Game" styleClass="combo-box-gamer" HBox.hgrow="ALWAYS" /><TextField fx:id="txtSkill" prefWidth="150" promptText="Skill (1-10)" styleClass="text-field-gamer" /></HBox>
+                                <ComboBox fx:id="cmbRole" maxWidth="Infinity" prefHeight="40.0" promptText="Role" styleClass="combo-box-gamer" />
+                                <Label text="-- SURVEY --" textFill="white" underline="true"><font><Font name="ROGFonts-Regular" size="14" /></font></Label>
+                                <Label text="Q1: I enjoy taking the lead." textFill="#aaa"><font><Font name="Consolas" size="14" /></font></Label><Slider fx:id="q1" blockIncrement="1" majorTickUnit="1" max="5" min="1" showTickLabels="true" showTickMarks="true" snapToTicks="true" />
+                                <Label text="Q2: I prefer analyzing situations." textFill="#aaa"><font><Font name="Consolas" size="14" /></font></Label><Slider fx:id="q2" blockIncrement="1" majorTickUnit="1" max="5" min="1" showTickLabels="true" showTickMarks="true" snapToTicks="true" />
+                                <Label text="Q3: I work well with others." textFill="#aaa"><font><Font name="Consolas" size="14" /></font></Label><Slider fx:id="q3" blockIncrement="1" majorTickUnit="1" max="5" min="1" showTickLabels="true" showTickMarks="true" snapToTicks="true" />
+                                <Label text="Q4: I am calm under pressure." textFill="#aaa"><font><Font name="Consolas" size="14" /></font></Label><Slider fx:id="q4" blockIncrement="1" majorTickUnit="1" max="5" min="1" showTickLabels="true" showTickMarks="true" snapToTicks="true" />
+                                <Label text="Q5: I like making quick decisions." textFill="#aaa"><font><Font name="Consolas" size="14" /></font></Label><Slider fx:id="q5" blockIncrement="1" majorTickUnit="1" max="5" min="1" showTickLabels="true" showTickMarks="true" snapToTicks="true" />
+                                <Button maxWidth="Infinity" onAction="#calculatePersonality" styleClass="button-generate" text="CALCULATE SCORE" />
+                                <Label fx:id="lblResult" text="..." textFill="white"><font><Font name="Consolas Bold" size="16" /></font></Label>
+                                <HBox alignment="CENTER_RIGHT" spacing="15">
+                                    <Button onAction="#cancel" prefHeight="38.0" prefWidth="111.0" styleClass="button-exit" text="Cancel" />
+                           <Label prefHeight="17.0" prefWidth="264.0" />
+                                    <Button fx:id="btnSave" disable="true" onAction="#saveParticipant" prefHeight="38.0" prefWidth="321.0" styleClass="button-generate" text="Add Participant" />
                                 </HBox>
                             </VBox>
                         </VBox>
