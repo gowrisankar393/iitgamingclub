@@ -4,10 +4,15 @@ import com.example.iitgamingclub.model.Participant;
 import java.io.*;
 import java.util.*;
 
+/**
+ * Class: DataManager
+ * Pattern: Singleton
+ * Handles all File I/O operations (Import/Export/Save).
+ */
 public class DataManager {
     private static DataManager instance;
-    private Map<String, List<Participant>> loadedFiles; // Caches loaded CSVs
-    private String currentActiveFile; // Tracks the currently selected CSV path
+    private Map<String, List<Participant>> loadedFiles;
+    private String currentActiveFile;
 
     private DataManager() {
         loadedFiles = new HashMap<>();
@@ -25,7 +30,7 @@ public class DataManager {
 
         List<Participant> participants = new ArrayList<>();
         try (BufferedReader br = new BufferedReader(new FileReader(file))) {
-            String line = br.readLine(); // Skip header
+            String line = br.readLine(); // Read header
             while ((line = br.readLine()) != null) {
                 String[] data = line.split(",");
                 if (data.length >= 8) {
@@ -42,11 +47,9 @@ public class DataManager {
     }
 
     public void saveToFile(String filePath) throws IOException {
-        if (filePath == null || !loadedFiles.containsKey(filePath)) return;
-
-        List<Participant> list = loadedFiles.get(filePath);
+        if (filePath == null) return;
+        List<Participant> list = getParticipants(filePath);
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(filePath))) {
-            // Write Header
             bw.write("ID,Name,Email,PreferredGame,SkillLevel,PreferredRole,PersonalityScore,PersonalityType\n");
             for (Participant p : list) {
                 bw.write(p.toString() + "\n");
@@ -54,7 +57,6 @@ public class DataManager {
         }
     }
 
-    // Creates a new empty CSV file
     public void createNewFile(String filePath) throws IOException {
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(filePath))) {
             bw.write("ID,Name,Email,PreferredGame,SkillLevel,PreferredRole,PersonalityScore,PersonalityType\n");
@@ -72,11 +74,10 @@ public class DataManager {
     }
 
     public String getCurrentActiveFile() { return currentActiveFile; }
+    public void setCurrentActiveFile(String f) { this.currentActiveFile = f; }
 
-    // Generates Next ID (e.g., P101) based on list size
     public String generateNextId(String filePath) {
-        List<Participant> list = getParticipants(filePath);
-        return "P" + (list.size() + 101);
+        return "P" + (getParticipants(filePath).size() + 101);
     }
 
     public void addParticipant(String filePath, Participant p) {

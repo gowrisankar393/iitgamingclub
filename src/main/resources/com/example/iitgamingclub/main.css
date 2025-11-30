@@ -1,4 +1,9 @@
-/* --- 1. NORMAL BUTTONS (Add, Remove, Update, Show, Import) --- */
+/* GLOBAL STYLES */
+.root {
+    -fx-background-color: black;
+}
+
+/* --- BUTTON STYLES --- */
 .button-normal {
     -fx-background-color: transparent;
     -fx-border-color: white;
@@ -18,7 +23,6 @@
     -fx-border-color: white;
 }
 
-/* --- 2. GENERATE TEAMS BUTTON --- */
 .button-generate {
     -fx-background-color: transparent;
     -fx-border-color: #cfff04;
@@ -38,7 +42,6 @@
     -fx-border-color: #cfff04;
 }
 
-/* --- 3. EXIT BUTTON --- */
 .button-exit {
     -fx-background-color: transparent;
     -fx-border-color: red;
@@ -58,7 +61,7 @@
     -fx-border-color: red;
 }
 
-/* Window Control Buttons (Min/Max) */
+/* --- TITLE BAR BUTTONS --- */
 .window-btn {
     -fx-background-color: transparent;
     -fx-text-fill: #aaaaaa;
@@ -70,11 +73,10 @@
 }
 
 .window-btn:hover {
-    -fx-background-color: #cfff04;
-    -fx-text-fill: black;
+    -fx-background-color: #333333;
+    -fx-text-fill: white;
 }
 
-/* Close Button (Special Red Hover) */
 .window-btn-close {
     -fx-background-color: transparent;
     -fx-text-fill: #aaaaaa;
@@ -88,4 +90,69 @@
 .window-btn-close:hover {
     -fx-background-color: red;
     -fx-text-fill: white;
+}
+
+/* --- FORM INPUTS --- */
+.text-field-gamer {
+    -fx-background-color: rgba(0,0,0,0.5);
+    -fx-text-fill: white;
+    -fx-border-color: #cfff04;
+    -fx-border-radius: 50;
+    -fx-background-radius: 50;
+    -fx-border-width: 2;
+    -fx-font-family: "Consolas";
+    -fx-font-size: 14px;
+    -fx-padding: 10 20;
+}
+
+.combo-box-gamer {
+    -fx-background-color: rgba(0,0,0,0.5);
+    -fx-border-color: #cfff04;
+    -fx-border-radius: 50;
+    -fx-background-radius: 50;
+    -fx-border-width: 2;
+}
+.combo-box-gamer .cell {
+    -fx-text-fill: white;
+}
+/* Fix for ComboBox popup list color */
+.combo-box-popup .list-view {
+    -fx-background-color: #222;
+    -fx-text-fill: white;
+}
+.combo-box-popup .list-cell {
+    -fx-text-fill: white;
+}
+.combo-box-popup .list-cell:hover {
+    -fx-background-color: #cfff04;
+    -fx-text-fill: black;
+}
+
+/* --- TABLE VIEW --- */
+.table-view {
+    -fx-background-color: transparent;
+    -fx-border-color: #cfff04;
+    -fx-border-width: 1;
+}
+.table-view .column-header-background {
+    -fx-background-color: #111;
+}
+.table-view .column-header .label {
+    -fx-text-fill: #cfff04;
+    -fx-font-family: "Consolas";
+}
+.table-row-cell {
+    -fx-background-color: #111;
+    -fx-text-fill: white;
+}
+.table-row-cell:odd {
+    -fx-background-color: #222;
+}
+.table-row-cell:selected {
+    -fx-background-color: #cfff04;
+    -fx-text-background-color: black;
+}
+.table-cell {
+    -fx-text-fill: white;
+    -fx-font-family: "Consolas";
 }

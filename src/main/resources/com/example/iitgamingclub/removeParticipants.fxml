@@ -1,9 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
-<VBox spacing="20" alignment="CENTER" xmlns:fx="http://javafx.com/fxml" fx:controller="com.example.iitgamingclub.controller.removeParticipantsController" prefWidth="300" prefHeight="200">
-    <Label text="Remove Participant" style="-fx-font-weight: bold;"/>
-    <TextField fx:id="txtSearchId" promptText="Enter ID (e.g., P001)" maxWidth="200"/>
-    <Button text="Search &amp; Delete" onAction="#searchAndDelete" style="-fx-background-color: #ffcccc;"/>
-    <Label fx:id="lblInfo" text=""/>
-</VBox>
+<?import javafx.scene.text.Font?>
+
+<StackPane fx:id="rootPane" prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: black;" stylesheets="@main.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.iitgamingclub.controller.removeParticipantsController">
+    <children>
+        <ImageView blendMode="LIGHTEN" fitHeight="${rootPane.height}" fitWidth="${rootPane.width}" managed="false" preserveRatio="false"><image><Image url="@media/background.jpg" /></image><opacity>0.2</opacity></ImageView>
+        <BorderPane>
+            <top>
+                <HBox alignment="CENTER_RIGHT" onMouseDragged="#handleMouseDragged" onMousePressed="#handleMousePressed" prefHeight="40.0" spacing="10.0" style="-fx-background-color: rgba(0,0,0,0.8); -fx-border-color: #333; -fx-border-width: 0 0 1 0;">
+                    <padding><Insets left="15.0" right="15.0" /></padding>
+                    <children>
+                        <Label maxWidth="Infinity" text="Remove Participant" textFill="#888888" HBox.hgrow="ALWAYS"><font><Font name="Consolas" size="14.0" /></font></Label>
+                        <Button onMouseClicked="#handleMinimize" styleClass="window-btn" text="_" />
+                        <Button onMouseClicked="#handleMaximize" styleClass="window-btn" text="[ ]" />
+                        <Button onMouseClicked="#cancel" styleClass="window-btn-close" text="X" />
+                    </children>
+                </HBox>
+            </top>
+            <center>
+                <VBox alignment="CENTER" spacing="20.0" maxWidth="500">
+                    <Label text="&lt;&lt;&lt; REMOVE &gt;&gt;&gt;" textFill="#ff5555"><font><Font name="ROGFonts-Regular" size="24.0" /></font></Label>
+                    <TextField fx:id="txtSearchId" promptText="Enter ID" styleClass="text-field-gamer" alignment="CENTER"/>
+                    <Button text="SEARCH &amp; DELETE" onAction="#searchAndDelete" styleClass="button-exit" maxWidth="Infinity"/>
+                    <Label fx:id="lblInfo" textFill="white"><font><Font name="Consolas" size="14"/></font></Label>
+                    <Button text="BACK" onAction="#cancel" styleClass="button-normal" maxWidth="200"/>
+                </VBox>
+            </center>
+        </BorderPane>
+    </children>
+</StackPane>

@@ -1,20 +1,42 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
-<VBox spacing="10" xmlns:fx="http://javafx.com/fxml" fx:controller="com.example.iitgamingclub.controller.showParticipantsController" prefWidth="700" prefHeight="400">
-    <HBox spacing="10" alignment="CENTER_LEFT" style="-fx-padding: 10;">
-        <Label text="View File:"/>
-        <ComboBox fx:id="cmbFiles" onAction="#loadTable"/>
-    </HBox>
+<?import javafx.scene.text.Font?>
 
-    <TableView fx:id="tblParticipants" VBox.vgrow="ALWAYS">
-        <columns>
-            <TableColumn fx:id="colId" text="ID" prefWidth="50"/>
-            <TableColumn fx:id="colName" text="Name" prefWidth="120"/>
-            <TableColumn fx:id="colGame" text="Game" prefWidth="100"/>
-            <TableColumn fx:id="colSkill" text="Skill" prefWidth="50"/>
-            <TableColumn fx:id="colRole" text="Role" prefWidth="100"/>
-            <TableColumn fx:id="colType" text="Personality" prefWidth="100"/>
-        </columns>
-    </TableView>
-</VBox>
+<StackPane fx:id="rootPane" prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: black;" stylesheets="@main.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.iitgamingclub.controller.showParticipantsController">
+    <children>
+        <ImageView blendMode="LIGHTEN" fitHeight="${rootPane.height}" fitWidth="${rootPane.width}" managed="false" preserveRatio="false"><image><Image url="@media/background.jpg" /></image><opacity>0.2</opacity></ImageView>
+        <BorderPane>
+            <top>
+                <HBox alignment="CENTER_RIGHT" onMouseDragged="#handleMouseDragged" onMousePressed="#handleMousePressed" prefHeight="40.0" spacing="10.0" style="-fx-background-color: rgba(0,0,0,0.8); -fx-border-color: #333; -fx-border-width: 0 0 1 0;">
+                    <padding><Insets left="15.0" right="15.0" /></padding>
+                    <children>
+                        <Label maxWidth="Infinity" text="All Participants" textFill="#888888" HBox.hgrow="ALWAYS"><font><Font name="Consolas" size="14.0" /></font></Label>
+                        <Button onMouseClicked="#handleMinimize" styleClass="window-btn" text="_" />
+                        <Button onMouseClicked="#handleMaximize" styleClass="window-btn" text="[ ]" />
+                        <Button onMouseClicked="#cancel" styleClass="window-btn-close" text="X" />
+                    </children>
+                </HBox>
+            </top>
+            <center>
+                <VBox spacing="10" alignment="CENTER" style="-fx-padding: 20;">
+                    <HBox spacing="10" alignment="CENTER_LEFT"><Label text="File:" textFill="white"/><ComboBox fx:id="cmbFiles" onAction="#loadTable" styleClass="combo-box-gamer"/></HBox>
+                    <TableView fx:id="tblParticipants" VBox.vgrow="ALWAYS" style="-fx-background-color: transparent;">
+                        <columns>
+                            <TableColumn fx:id="colId" text="ID" prefWidth="80"/>
+                            <TableColumn fx:id="colName" text="Name" prefWidth="200"/>
+                            <TableColumn fx:id="colGame" text="Game" prefWidth="150"/>
+                            <TableColumn fx:id="colSkill" text="Skill" prefWidth="80"/>
+                            <TableColumn fx:id="colRole" text="Role" prefWidth="150"/>
+                            <TableColumn fx:id="colType" text="Type" prefWidth="150"/>
+                        </columns>
+                        <columnResizePolicy><TableView fx:constant="CONSTRAINED_RESIZE_POLICY"/></columnResizePolicy>
+                    </TableView>
+                    <Button text="BACK" onAction="#cancel" styleClass="button-normal" alignment="CENTER_RIGHT"/>
+                </VBox>
+            </center>
+        </BorderPane>
+    </children>
+</StackPane>

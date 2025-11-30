@@ -1,22 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
 
-<VBox spacing="10" xmlns:fx="http://javafx.com/fxml" fx:controller="com.example.iitgamingclub.controller.createTeamController" prefWidth="500" prefHeight="600">
-    <padding><Insets top="10" right="10" bottom="10" left="10"/></padding>
-    <Label text="Generate Teams" style="-fx-font-size: 18px; -fx-font-weight: bold;"/>
-
-    <HBox spacing="10" alignment="CENTER_LEFT">
-        <Label text="Source File:"/>
-        <ComboBox fx:id="cmbFiles" prefWidth="200"/>
-    </HBox>
-
-    <HBox spacing="10" alignment="CENTER_LEFT">
-        <Label text="Members per Team (N):"/>
-        <TextField fx:id="txtTeamSize" prefWidth="50"/>
-        <Button text="Generate" onAction="#generate"/>
-    </HBox>
-
-    <TextArea fx:id="txtOutput" VBox.vgrow="ALWAYS" editable="false" style="-fx-font-family: monospace;"/>
-</VBox>
+<StackPane fx:id="rootPane" prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: black;" stylesheets="@main.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.iitgamingclub.controller.createTeamController">
+    <children>
+        <ImageView blendMode="LIGHTEN" fitHeight="${rootPane.height}" fitWidth="${rootPane.width}" managed="false" preserveRatio="false"><image><Image url="@media/background.jpg" /></image><opacity>0.2</opacity></ImageView>
+        <BorderPane>
+            <top>
+                <HBox alignment="CENTER_RIGHT" onMouseDragged="#handleMouseDragged" onMousePressed="#handleMousePressed" prefHeight="40.0" spacing="10.0" style="-fx-background-color: rgba(0,0,0,0.8); -fx-border-color: #333; -fx-border-width: 0 0 1 0;">
+                    <padding><Insets left="15.0" right="15.0" /></padding>
+                    <children>
+                        <Label maxWidth="Infinity" text="Generate Teams" textFill="#888888" HBox.hgrow="ALWAYS"><font><Font name="Consolas" size="14.0" /></font></Label>
+                        <Button onMouseClicked="#handleMinimize" styleClass="window-btn" text="_" />
+                        <Button onMouseClicked="#handleMaximize" styleClass="window-btn" text="[ ]" />
+                        <Button onMouseClicked="#cancel" styleClass="window-btn-close" text="X" />
+                    </children>
+                </HBox>
+            </top>
+            <center>
+                <VBox spacing="15" alignment="CENTER" style="-fx-padding: 30;">
+                    <Label text="&lt;&lt;&lt; TEAM GENERATOR &gt;&gt;&gt;" textFill="#cfff04"><font><Font name="ROGFonts-Regular" size="24.0" /></font></Label>
+                    <HBox spacing="15" alignment="CENTER">
+                        <ComboBox fx:id="cmbFiles" promptText="Select Source File" styleClass="combo-box-gamer" prefWidth="250"/>
+                        <TextField fx:id="txtTeamSize" promptText="Size (N)" styleClass="text-field-gamer" prefWidth="100"/>
+                        <Button text="GENERATE" onAction="#generate" styleClass="button-generate"/>
+                    </HBox>
+                    <TextArea fx:id="txtOutput" VBox.vgrow="ALWAYS" editable="false" style="-fx-control-inner-background: #111; -fx-text-fill: white; -fx-font-family: 'Consolas'; -fx-font-size: 14px;"/>
+                    <Button text="BACK" onAction="#cancel" styleClass="button-normal"/>
+                </VBox>
+            </center>
+        </BorderPane>
+    </children>
+</StackPane>

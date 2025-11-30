@@ -3,78 +3,57 @@ package com.example.iitgamingclub.controller;
 import com.example.iitgamingclub.service.DataManager;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.StackPane;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-import javafx.scene.Node;
+import javafx.stage.StageStyle;
 import java.io.File;
 import java.io.IOException;
 
 public class iitGamingClubController {
+    @FXML private StackPane rootPane;
+    private double xOffset = 0, yOffset = 0;
 
-    // --- WINDOW DRAGGING LOGIC ---
-    private double xOffset = 0;
-    private double yOffset = 0;
-
-    @FXML
-    public void handleMousePressed(MouseEvent event) {
-        xOffset = event.getSceneX();
-        yOffset = event.getSceneY();
-    }
-
-    @FXML
-    public void handleMouseDragged(MouseEvent event) {
+    // Window Controls
+    @FXML public void handleMousePressed(MouseEvent event) { xOffset = event.getSceneX(); yOffset = event.getSceneY(); }
+    @FXML public void handleMouseDragged(MouseEvent event) {
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setX(event.getScreenX() - xOffset);
         stage.setY(event.getScreenY() - yOffset);
     }
-
-    // --- WINDOW BUTTON LOGIC ---
-    @FXML
-    public void handleMinimize(MouseEvent event) {
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        stage.setIconified(true);
-    }
-
-    @FXML
-    public void handleMaximize(MouseEvent event) {
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        // Toggle Maximize
+    @FXML public void handleMinimize(MouseEvent e) { ((Stage) ((Node) e.getSource()).getScene().getWindow()).setIconified(true); }
+    @FXML public void handleMaximize(MouseEvent e) {
+        Stage stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
         stage.setMaximized(!stage.isMaximized());
     }
-
-    // Note: Reusing your existing handleExit for the close button
     @FXML public void handleExit() { System.exit(0); }
 
-    // --- EXISTING NAVIGATION LOGIC (Unchanged) ---
+    private void switchScene(String fxml) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("/com/example/iitgamingclub/" + fxml));
+        Stage newStage = new Stage();
+        newStage.initStyle(StageStyle.UNDECORATED); // No OS Title Bar
+        newStage.setTitle("IIT Gaming Club");
+        newStage.setScene(new Scene(root, 1280, 720));
+        newStage.setMaximized(true);
+        newStage.show();
 
-    private void switchScene(String fxmlFile) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("/com/example/iitgamingclub/" + fxmlFile));
-        Stage stage = new Stage();
-        stage.setScene(new Scene(root));
-        stage.setTitle(fxmlFile.replace(".fxml", ""));
-        // Keep new windows undecorated too if you want consistent style
-        // stage.initStyle(StageStyle.UNDECORATED);
-        stage.show();
+        ((Stage) rootPane.getScene().getWindow()).close(); // Close current
     }
 
-    @FXML
-    public void handleImport() {
-        FileChooser fileChooser = new FileChooser();
-        fileChooser.setTitle("Import Participant CSV");
-        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("CSV Files", "*.csv"));
-        File file = fileChooser.showOpenDialog(null);
-
-        if (file != null) {
+    @FXML public void handleImport() {
+        FileChooser fc = new FileChooser();
+        fc.getExtensionFilters().add(new FileChooser.ExtensionFilter("CSV Files", "*.csv"));
+        File f = fc.showOpenDialog(null);
+        if(f != null) {
             try {
-                DataManager.getInstance().importFile(file);
-                showAlert(Alert.AlertType.INFORMATION, "Success", "File imported successfully!");
-            } catch (Exception e) {
-                showAlert(Alert.AlertType.ERROR, "Error", e.getMessage());
-            }
+                DataManager.getInstance().importFile(f);
+                new Alert(Alert.AlertType.INFORMATION, "Imported: " + f.getName()).show();
+            } catch (Exception e) { e.printStackTrace(); }
         }
     }
 
@@ -83,11 +62,4 @@ public class iitGamingClubController {
     @FXML public void goToUpdate() throws IOException { switchScene("updateParticipants.fxml"); }
     @FXML public void goToShow() throws IOException { switchScene("showParticipants.fxml"); }
     @FXML public void goToGenerate() throws IOException { switchScene("createTeam.fxml"); }
-
-    private void showAlert(Alert.AlertType type, String title, String content) {
-        Alert alert = new Alert(type);
-        alert.setTitle(title);
-        alert.setContentText(content);
-        alert.showAndWait();
-    }
 }

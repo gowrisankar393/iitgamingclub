@@ -5,13 +5,15 @@ import com.example.iitgamingclub.model.Team;
 import java.util.*;
 import java.util.stream.Collectors;
 
+/**
+ * Class: TeamMatchingService
+ * Logic: Implements the logic to form balanced teams based on roles, personality, and skill.
+ */
 public class TeamMatchingService {
 
     public List<Team> generateTeams(List<Participant> sourceData, int teamSize) {
-        // Create a copy to manipulate
         List<Participant> pool = new ArrayList<>(sourceData);
-
-        // Strategy: Sort by Skill (Highest First) to distribute strong players evenly
+        // Sort pool by skill (descending) to prioritize placing strong players
         pool.sort(Comparator.comparingInt(Participant::getSkillLevel).reversed());
 
         int totalPlayers = pool.size();
@@ -22,16 +24,28 @@ public class TeamMatchingService {
             teams.add(new Team(i + 1));
         }
 
-        // 1. Distribute Leaders (Try 1 per team)
+        // 1. Distribute Leaders (1 per team)
         List<Participant> leaders = extractByType(pool, "Leader");
         roundRobinDistribute(teams, leaders, 1);
 
-        // 2. Distribute Thinkers (Try 1-2 per team)
+        // 2. Distribute Thinkers (2 per team)
         List<Participant> thinkers = extractByType(pool, "Thinker");
         roundRobinDistribute(teams, thinkers, 2);
 
-        // 3. Fill with Balanced and remaining Leaders/Thinkers
-        roundRobinDistribute(teams, pool, teamSize); // 'pool' now only contains remaining
+        // 3. Fill with Balanced and remaining (Fill to teamSize)
+        roundRobinDistribute(teams, pool, teamSize);
+
+        // 4. Handle Remainders (If any unassigned remain due to constraints)
+        // If the loop finished but 'pool' still has people, force assign them
+        if(!pool.isEmpty()) {
+            // Sort teams by size (smallest first)
+            teams.sort(Comparator.comparingInt(Team::getMemberCount));
+            for(Participant p : pool) {
+                teams.get(0).addMember(p); // Add to smallest
+                // Re-sort to keep balancing
+                teams.sort(Comparator.comparingInt(Team::getMemberCount));
+            }
+        }
 
         return teams;
     }
@@ -45,7 +59,7 @@ public class TeamMatchingService {
     }
 
     private void roundRobinDistribute(List<Team> teams, List<Participant> players, int limit) {
-        // Sort players by skill to balance skill while distributing
+        // Sort players by skill to balance teams
         players.sort(Comparator.comparingInt(Participant::getSkillLevel).reversed());
 
         int teamIndex = 0;
@@ -55,31 +69,32 @@ public class TeamMatchingService {
             Participant p = it.next();
             boolean assigned = false;
 
-            // Try to find a slot
+            // Try to find a valid team
             for (int i = 0; i < teams.size(); i++) {
-                Team t = teams.get((teamIndex + i) % teams.size()); // Round robin
+                Team t = teams.get((teamIndex + i) % teams.size());
 
-                // Check if team is not full regarding the current limit/constraint
-                // We also check Game Variety (Max 2 of same game)
-                if (t.getMemberCount() < limit || limit >= 5) { // Strict limit for roles, loose for filling
-                    long sameGameCount = t.getMembers().stream()
-                            .filter(m -> m.getPreferredGame().equalsIgnoreCase(p.getPreferredGame()))
-                            .count();
+                // Check Game Variety Constraint (Max 2 of same game)
+                long sameGameCount = t.getMembers().stream()
+                        .filter(m -> m.getPreferredGame().equalsIgnoreCase(p.getPreferredGame()))
+                        .count();
 
-                    if (sameGameCount < 2) {
-                        t.addMember(p);
-                        it.remove();
-                        assigned = true;
-                        teamIndex++;
-                        break;
-                    }
+                // Check if team has space (based on the current phase limit)
+                // If limit >= 5, we are in filling phase, so strict role limits are relaxed, just fill capacity
+                if ((t.getMemberCount() < limit || limit >= 5) && sameGameCount < 2) {
+                    t.addMember(p);
+                    it.remove();
+                    assigned = true;
+                    teamIndex++;
+                    break;
                 }
             }
 
-            // If could not assign due to constraints, force assign to smallest team (Weakest Link logic)
+            // If strictly filling and constraints block it, force assignment to avoid stragglers
+            // (Only applies in the final phase where limit is high)
             if (!assigned && limit >= 5) {
-                teams.sort(Comparator.comparingInt(Team::getMemberCount));
-                teams.get(0).addMember(p);
+                // Find smallest team
+                Team smallest = teams.stream().min(Comparator.comparingInt(Team::getMemberCount)).orElse(teams.get(0));
+                smallest.addMember(p);
                 it.remove();
             }
         }

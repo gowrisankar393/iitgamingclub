@@ -1,9 +1,10 @@
 package com.example.iitgamingclub.model;
 
-import java.io.Serializable;
-
-public class Participant implements Comparable<Participant>, Serializable {
-    // Encapsulation: Private fields
+/**
+ * Class: Participant
+ * Represents a single member. Implements Encapsulation.
+ */
+public class Participant implements Comparable<Participant> {
     private String id;
     private String name;
     private String email;
@@ -40,7 +41,7 @@ public class Participant implements Comparable<Participant>, Serializable {
 
     @Override
     public String toString() {
-        // Format for CSV writing
+        // Formats data for CSV storage
         return String.join(",", id, name, email, preferredGame,
                 String.valueOf(skillLevel), preferredRole,
                 String.valueOf(personalityScore), personalityType);
@@ -48,7 +49,6 @@ public class Participant implements Comparable<Participant>, Serializable {
 
     @Override
     public int compareTo(Participant o) {
-        // Sort by ID naturally
         return this.id.compareTo(o.id);
     }
 }

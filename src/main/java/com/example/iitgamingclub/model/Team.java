@@ -3,6 +3,10 @@ package com.example.iitgamingclub.model;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Class: Team
+ * Represents a generated team. Uses Composition (holds Participants).
+ */
 public class Team {
     private int teamId;
     private List<Participant> members;
@@ -20,19 +24,20 @@ public class Team {
         return members;
     }
 
-    public double getAverageSkill() {
-        return members.stream().mapToInt(Participant::getSkillLevel).average().orElse(0.0);
-    }
-
     public int getMemberCount() {
         return members.size();
     }
 
+    public double getAverageSkill() {
+        return members.stream().mapToInt(Participant::getSkillLevel).average().orElse(0.0);
+    }
+
     @Override
     public String toString() {
-        StringBuilder sb = new StringBuilder("=== Team " + teamId + " (Avg Skill: " + String.format("%.2f", getAverageSkill()) + ") ===\n");
+        StringBuilder sb = new StringBuilder("=== TEAM " + teamId + " (Avg Skill: " + String.format("%.2f", getAverageSkill()) + ") ===\n");
         for (Participant p : members) {
-            sb.append(String.format("  - %s (%s, %s, %s)\n", p.getName(), p.getPreferredRole(), p.getPersonalityType(), p.getPreferredGame()));
+            sb.append(String.format("   %-20s | Role: %-12s | Type: %-10s | Game: %s\n",
+                    p.getName(), p.getPreferredRole(), p.getPersonalityType(), p.getPreferredGame()));
         }
         return sb.toString();
     }

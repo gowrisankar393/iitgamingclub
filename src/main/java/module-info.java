@@ -3,11 +3,11 @@ module com.example.iitgamingclub {
     requires javafx.fxml;
     requires java.base;
 
-    // Export the main package
+    // Export main package
     exports com.example.iitgamingclub;
 
-    // Open packages to JavaFX for FXML injection and Reflection
+    // Allow JavaFX to access internal classes for FXML loading and Reflection
     opens com.example.iitgamingclub to javafx.fxml;
     opens com.example.iitgamingclub.controller to javafx.fxml;
-    opens com.example.iitgamingclub.model to javafx.base; // Required for TableView
+    opens com.example.iitgamingclub.model to javafx.base; // Required for TableView data binding
 }

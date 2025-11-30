@@ -1,170 +1,51 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ComboBox?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ScrollPane?>
-<?import javafx.scene.control.Slider?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.StackPane?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
 <?import javafx.scene.text.Font?>
-
-<!-- Root StackPane for Background Layering -->
 
 <StackPane fx:id="rootPane" prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: black;" stylesheets="@main.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.iitgamingclub.controller.addParticipantsController">
     <children>
-
-        <!-- LAYER 1: Background Image -->
         <ImageView blendMode="LIGHTEN" fitHeight="${rootPane.height}" fitWidth="${rootPane.width}" managed="false" preserveRatio="false">
-            <image>
-                <Image url="@media/background.jpg" />
-            </image>
-            <opacity>0.15</opacity> <!-- Slightly lower opacity for forms -->
+            <image><Image url="@media/background.jpg" /></image><opacity>0.15</opacity>
         </ImageView>
-
-        <!-- LAYER 2: Main Layout with Custom Title Bar -->
         <BorderPane>
-
-            <!-- TOP: Custom Black Title Bar -->
             <top>
                 <HBox alignment="CENTER_RIGHT" onMouseDragged="#handleMouseDragged" onMousePressed="#handleMousePressed" prefHeight="40.0" spacing="10.0" style="-fx-background-color: rgba(0,0,0,0.8); -fx-border-color: #333; -fx-border-width: 0 0 1 0;">
-                    <padding>
-                        <Insets left="15.0" right="15.0" />
-                    </padding>
+                    <padding><Insets left="15.0" right="15.0" /></padding>
                     <children>
-                        <Label maxWidth="Infinity" text="Add New Participant" textFill="#888888" HBox.hgrow="ALWAYS">
-                            <font>
-                                <Font name="Consolas" size="14.0" />
-                            </font>
-                        </Label>
-                        <Button onMouseClicked="#handleMinimize" styleClass="window-btn" text="_" textFill="WHITE" />
-                        <Button onMouseClicked="#handleMaximize" styleClass="window-btn" text="[ ]" textFill="WHITE" />
-                        <Button onMouseClicked="#cancel" styleClass="window-btn-close" text="X" textFill="WHITE" />
+                        <Label maxWidth="Infinity" text="Add Participant" textFill="#888888" HBox.hgrow="ALWAYS"><font><Font name="Consolas" size="14.0" /></font></Label>
+                        <Button onMouseClicked="#handleMinimize" styleClass="window-btn" text="_" />
+                        <Button onMouseClicked="#handleMaximize" styleClass="window-btn" text="[ ]" />
+                        <Button onMouseClicked="#cancel" styleClass="window-btn-close" text="X" />
                     </children>
                 </HBox>
             </top>
-
-            <!-- CENTER: The ScrollPane Content -->
             <center>
                 <ScrollPane fitToWidth="true" style="-fx-background: transparent; -fx-background-color: transparent;">
                     <content>
-                        <VBox alignment="TOP_CENTER" prefHeight="1900.0" spacing="15.0" style="-fx-background-color: transparent;">
-                            <padding>
-                                <Insets bottom="30.0" left="100.0" right="100.0" top="30.0" />
-                            </padding>
-                            <children>
-                                <Label alignment="CENTER" text="&lt;&lt;&lt; Add Participant &gt;&gt;&gt;" textFill="#c9f600">
-                                    <font>
-                                        <Font name="ROGFonts-Regular" size="24.0" />
-                                    </font>
-                                    <VBox.margin>
-                                        <Insets bottom="20.0" />
-                                    </VBox.margin>
-                                </Label>
-                  
-                                <TextField fx:id="txtName" alignment="CENTER" maxWidth="600.0" prefHeight="40.0" promptText="Player Full Name" style="-fx-background-color: rgba(0,0,0,0.5); -fx-text-fill: white; -fx-background-radius: 50; -fx-border-color: #cfff04; -fx-border-radius: 50; -fx-border-width: 2;">
-                                    <font>
-                                        <Font name="Consolas Bold" size="14.0" />
-                                    </font>
-                                </TextField>
-                  
-                                <TextField fx:id="txtEmail" alignment="CENTER" maxWidth="600.0" prefHeight="40.0" promptText="Email Address" style="-fx-background-color: rgba(0,0,0,0.5); -fx-text-fill: white; -fx-background-radius: 50; -fx-border-color: #cfff04; -fx-border-radius: 50; -fx-border-width: 2;">
-                                    <font>
-                                        <Font name="Consolas Bold" size="14.0" />
-                                    </font>
-                                </TextField>
-                  
-                                <HBox alignment="CENTER" spacing="15.0">
-                                    <children>
-                                        <ComboBox fx:id="cmbGame" prefHeight="40.0" prefWidth="485.0" promptText="Preferred Game" style="-fx-background-color: rgba(0,0,0,0.5); -fx-border-color: #cfff04; -fx-border-radius: 50; -fx-border-width: 2; -fx-font-family: 'Consolas'; -fx-font-size: 14px; -fx-text-fill: white;" />
-                                        <TextField fx:id="txtSkill" alignment="CENTER" prefHeight="40.0" prefWidth="100.0" promptText="Skill (1-10)" style="-fx-background-color: rgba(0,0,0,0.5); -fx-text-fill: white; -fx-background-radius: 50; -fx-border-color: #cfff04; -fx-border-radius: 50; -fx-border-width: 2;">
-                                            <font>
-                                                <Font name="Consolas Bold" size="14.0" />
-                                            </font>
-                                        </TextField>
-                                    </children>
+                        <VBox alignment="TOP_CENTER" spacing="15.0" style="-fx-background-color: transparent;">
+                            <padding><Insets top="30" bottom="30"/></padding>
+                            <VBox alignment="TOP_CENTER" maxWidth="700.0" spacing="15.0">
+                                <Label text="&lt;&lt;&lt; ADD PARTICIPANT &gt;&gt;&gt;" textFill="#cfff04"><font><Font name="ROGFonts-Regular" size="24.0" /></font></Label>
+                                <TextField fx:id="txtName" promptText="Full Name" styleClass="text-field-gamer" />
+                                <TextField fx:id="txtEmail" promptText="Email" styleClass="text-field-gamer" />
+                                <HBox spacing="15"><ComboBox fx:id="cmbGame" maxWidth="Infinity" promptText="Game" styleClass="combo-box-gamer" HBox.hgrow="ALWAYS"/><TextField fx:id="txtSkill" promptText="Skill (1-10)" styleClass="text-field-gamer" prefWidth="150"/></HBox>
+                                <ComboBox fx:id="cmbRole" maxWidth="Infinity" promptText="Role" styleClass="combo-box-gamer" />
+                                <Label text="-- SURVEY --" textFill="white" underline="true"><font><Font name="ROGFonts-Regular" size="14"/></font></Label>
+                                <Label text="Q1: I enjoy taking the lead." textFill="#aaa"><font><Font name="Consolas" size="14"/></font></Label><Slider fx:id="q1" max="5" min="1" showTickLabels="true" showTickMarks="true" snapToTicks="true" majorTickUnit="1" blockIncrement="1"/>
+                                <Label text="Q2: I prefer analyzing situations." textFill="#aaa"><font><Font name="Consolas" size="14"/></font></Label><Slider fx:id="q2" max="5" min="1" showTickLabels="true" showTickMarks="true" snapToTicks="true" majorTickUnit="1" blockIncrement="1"/>
+                                <Label text="Q3: I work well with others." textFill="#aaa"><font><Font name="Consolas" size="14"/></font></Label><Slider fx:id="q3" max="5" min="1" showTickLabels="true" showTickMarks="true" snapToTicks="true" majorTickUnit="1" blockIncrement="1"/>
+                                <Label text="Q4: I am calm under pressure." textFill="#aaa"><font><Font name="Consolas" size="14"/></font></Label><Slider fx:id="q4" max="5" min="1" showTickLabels="true" showTickMarks="true" snapToTicks="true" majorTickUnit="1" blockIncrement="1"/>
+                                <Label text="Q5: I like making quick decisions." textFill="#aaa"><font><Font name="Consolas" size="14"/></font></Label><Slider fx:id="q5" max="5" min="1" showTickLabels="true" showTickMarks="true" snapToTicks="true" majorTickUnit="1" blockIncrement="1"/>
+                                <Button text="CALCULATE SCORE" onAction="#calculatePersonality" maxWidth="Infinity" styleClass="button-generate"/>
+                                <Label fx:id="lblResult" text="..." textFill="white"><font><Font name="Consolas Bold" size="16"/></font></Label>
+                                <HBox spacing="15" alignment="CENTER_RIGHT">
+                                    <Button text="CANCEL" onAction="#cancel" styleClass="button-exit"/>
+                                    <Button fx:id="btnSave" text="SAVE" onAction="#saveParticipant" disable="true" styleClass="button-generate"/>
                                 </HBox>
-                  
-                                <ComboBox fx:id="cmbRole" maxWidth="600.0" prefHeight="40.0" promptText="Preferred Role" style="-fx-background-color: rgba(0,0,0,0.5); -fx-border-color: #cfff04; -fx-border-radius: 50; -fx-border-width: 2; -fx-font-family: 'Consolas'; -fx-font-size: 14px;" />
-                  
-                                <Label text="Personality Survey" textFill="WHITE" underline="true">
-                                    <font>
-                                        <Font name="ROGFonts-Regular" size="14.0" />
-                                    </font>
-                                    <VBox.margin>
-                                        <Insets top="20.0" />
-                                    </VBox.margin>
-                                </Label>
-                  
-                                <VBox maxWidth="600.0" spacing="10.0">
-                                    <Label text="Q1: I enjoy taking the lead." textFill="WHITE">
-                              <font>
-                                 <Font name="Consolas Bold" size="14.0" />
-                              </font>
-                           </Label>
-                                    <Slider fx:id="q1" blockIncrement="1.0" majorTickUnit="1.0" max="5.0" min="1.0" minorTickCount="0" showTickLabels="true" showTickMarks="true" snapToTicks="true" />
-                  
-                                    <Label text="Q2: I prefer analyzing situations." textFill="WHITE">
-                              <font>
-                                 <Font name="Consolas Bold" size="14.0" />
-                              </font>
-                           </Label>
-                                    <Slider fx:id="q2" blockIncrement="1.0" majorTickUnit="1.0" max="5.0" min="1.0" minorTickCount="0" showTickLabels="true" showTickMarks="true" snapToTicks="true" />
-                  
-                                    <Label text="Q3: I work well with others." textFill="WHITE">
-                              <font>
-                                 <Font name="Consolas Bold" size="14.0" />
-                              </font>
-                           </Label>
-                                    <Slider fx:id="q3" blockIncrement="1.0" majorTickUnit="1.0" max="5.0" min="1.0" minorTickCount="0" showTickLabels="true" showTickMarks="true" snapToTicks="true" />
-                  
-                                    <Label text="Q4: I am calm under pressure." textFill="WHITE">
-                              <font>
-                                 <Font name="Consolas Bold" size="14.0" />
-                              </font>
-                           </Label>
-                                    <Slider fx:id="q4" blockIncrement="1.0" majorTickUnit="1.0" max="5.0" min="1.0" minorTickCount="0" showTickLabels="true" showTickMarks="true" snapToTicks="true" />
-                  
-                                    <Label text="Q5: I like making quick decisions." textFill="WHITE">
-                              <font>
-                                 <Font name="Consolas Bold" size="14.0" />
-                              </font>
-                           </Label>
-                                    <Slider fx:id="q5" blockIncrement="1.0" majorTickUnit="1.0" max="5.0" min="1.0" minorTickCount="0" showTickLabels="true" showTickMarks="true" snapToTicks="true" />
-                                </VBox>
-                  
-                                <Button maxWidth="600.0" onAction="#calculatePersonality" prefHeight="40.0" style="-fx-background-color: black; -fx-background-radius: 50; -fx-border-color: #cfff04; -fx-border-radius: 50; -fx-border-width: 2; -fx-cursor: hand;" text="Calculate Personality Score" textFill="#cfff04">
-                                    <font>
-                                        <Font name="Consolas Bold" size="16.0" />
-                                    </font>
-                                </Button>
-                  
-                                <Label fx:id="lblResult" alignment="CENTER" prefHeight="30.0" prefWidth="600.0" style="-fx-font-weight: bold;" text="..." textAlignment="CENTER" textFill="WHITE">
-                                    <font>
-                                        <Font name="Consolas Bold" size="18.0" />
-                                    </font>
-                                </Label>
-                  
-                                <HBox alignment="CENTER_RIGHT" spacing="15.0">
-                                    <Button onAction="#cancel" prefHeight="40.0" prefWidth="100.0" style="-fx-background-color: black; -fx-background-radius: 50; -fx-border-color: red; -fx-border-radius: 50; -fx-border-width: 2; -fx-cursor: hand;" text="Cancel" textFill="RED">
-                                        <font>
-                                            <Font name="Consolas Bold" size="14.0" />
-                                        </font>
-                                    </Button>
-                           <Label prefHeight="17.0" prefWidth="269.0" text="Label" />
-                                    <Button fx:id="btnSave" disable="true" onAction="#saveParticipant" prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: #cfff04; -fx-background-radius: 50; -fx-border-color: #cfff04; -fx-border-radius: 50; -fx-border-width: 2; -fx-cursor: hand;" text="Save Participant">
-                                        <font>
-                                            <Font name="Consolas Bold" size="14.0" />
-                                        </font>
-                                    </Button>
-                                </HBox>
-                            </children>
+                            </VBox>
                         </VBox>
                     </content>
                 </ScrollPane>
