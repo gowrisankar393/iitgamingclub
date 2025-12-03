@@ -29,7 +29,7 @@ public class addParticipantsController {
         cmbRole.getItems().addAll("Strategist", "Attacker", "Defender", "Supporter", "Coordinator");
     }
 
-    // Window Controls
+    //Window Controls
     @FXML public void handleMousePressed(MouseEvent e) { xOffset = e.getSceneX(); yOffset = e.getSceneY(); }
     @FXML public void handleMouseDragged(MouseEvent e) {
         Stage s = (Stage) ((Node) e.getSource()).getScene().getWindow();
@@ -56,7 +56,7 @@ public class addParticipantsController {
         DataManager dm = DataManager.getInstance();
         String file = dm.getCurrentActiveFile();
         if (file == null) {
-            // Logic to create new file if none exists (simplified)
+            //logic to create new file if none exists (simplified)
             FileChooser fc = new FileChooser();
             fc.getExtensionFilters().add(new FileChooser.ExtensionFilter("CSV", "*.csv"));
             File f = fc.showSaveDialog(null);

@@ -26,7 +26,7 @@ public class createTeamController {
         cmbFiles.getItems().addAll(DataManager.getInstance().getLoadedFilePaths());
     }
 
-    // Window Controls
+    //Window Controls
     @FXML public void handleMousePressed(MouseEvent e) { xOffset = e.getSceneX(); yOffset = e.getSceneY(); }
     @FXML public void handleMouseDragged(MouseEvent e) {
         Stage s = (Stage) ((Node) e.getSource()).getScene().getWindow();

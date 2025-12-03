@@ -37,7 +37,7 @@ public class showParticipantsController {
         colType.setCellValueFactory(new PropertyValueFactory<>("personalityType"));
     }
 
-    // Window Controls
+    //Window Controls
     @FXML public void handleMousePressed(MouseEvent e) { xOffset = e.getSceneX(); yOffset = e.getSceneY(); }
     @FXML public void handleMouseDragged(MouseEvent e) {
         Stage s = (Stage) ((Node) e.getSource()).getScene().getWindow();

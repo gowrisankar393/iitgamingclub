@@ -35,11 +35,11 @@ public class TeamMatchingService {
         //handle remainders
         //if the loop finished but pool still has people, force assign them
         if(!pool.isEmpty()) {
-            // Sort teams by size (smallest first)
+            //sort teams by size (smallest first)
             teams.sort(Comparator.comparingInt(Team::getMemberCount));
             for(Participant p : pool) {
                 teams.get(0).addMember(p); // Add to smallest
-                // Re-sort to keep balancing
+                //re sort to keep balancing
                 teams.sort(Comparator.comparingInt(Team::getMemberCount));
             }
         }
@@ -56,7 +56,7 @@ public class TeamMatchingService {
     }
 
     private void roundRobinDistribute(List<Team> teams, List<Participant> players, int limit) {
-        // Sort players by skill to balance teams
+        //sort players by skill to balance teams
         players.sort(Comparator.comparingInt(Participant::getSkillLevel).reversed());
 
         int teamIndex = 0;
@@ -66,17 +66,16 @@ public class TeamMatchingService {
             Participant p = it.next();
             boolean assigned = false;
 
-            // Try to find a valid team
+            //try to find a valid team
             for (int i = 0; i < teams.size(); i++) {
                 Team t = teams.get((teamIndex + i) % teams.size());
 
-                // Check Game Variety Constraint (Max 2 of same game)
+                //check game variety (max 2 of same game)
                 long sameGameCount = t.getMembers().stream()
                         .filter(m -> m.getPreferredGame().equalsIgnoreCase(p.getPreferredGame()))
                         .count();
 
-                // Check if team has space (based on the current phase limit)
-                // If limit >= 5, we are in filling phase, so strict role limits are relaxed, just fill capacity
+                //check if team has space (based on the current phase limit). if limit >= 5 we are in filling phase, so strict role limits are relaxed, just fill capacity
                 if ((t.getMemberCount() < limit || limit >= 5) && sameGameCount < 2) {
                     t.addMember(p);
                     it.remove();
@@ -86,10 +85,9 @@ public class TeamMatchingService {
                 }
             }
 
-            // If strictly filling and constraints block it, force assignment to avoid stragglers
-            // (Only applies in the final phase where limit is high)
+            //if strictly filling and constraints block it, force assignment to avoid stragglers (only applies in the final phase where limit is high)
             if (!assigned && limit >= 5) {
-                // Find smallest team
+                //find smallest team
                 Team smallest = teams.stream().min(Comparator.comparingInt(Team::getMemberCount)).orElse(teams.get(0));
                 smallest.addMember(p);
                 it.remove();

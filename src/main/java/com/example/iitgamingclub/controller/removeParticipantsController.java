@@ -17,7 +17,7 @@ import java.util.List;
 public class removeParticipantsController {
     @FXML private TextField txtSearchId;
     @FXML private Label lblInfo;
-    @FXML private Button btnCancel; // For scene access
+    @FXML private Button btnCancel;
     private double xOffset, yOffset;
 
     // Window Controls

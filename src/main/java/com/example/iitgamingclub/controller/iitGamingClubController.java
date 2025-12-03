@@ -19,7 +19,7 @@ public class iitGamingClubController {
     @FXML private StackPane rootPane;
     private double xOffset = 0, yOffset = 0;
 
-    // Window Controls
+    //window controls
     @FXML public void handleMousePressed(MouseEvent event) { xOffset = event.getSceneX(); yOffset = event.getSceneY(); }
     @FXML public void handleMouseDragged(MouseEvent event) {
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -36,13 +36,13 @@ public class iitGamingClubController {
     private void switchScene(String fxml) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("/com/example/iitgamingclub/" + fxml));
         Stage newStage = new Stage();
-        newStage.initStyle(StageStyle.UNDECORATED); // No OS Title Bar
+        newStage.initStyle(StageStyle.UNDECORATED); //to make sure theres no windows default title bar
         newStage.setTitle("IIT Gaming Club");
         newStage.setScene(new Scene(root, 1280, 720));
         newStage.setMaximized(true);
         newStage.show();
 
-        ((Stage) rootPane.getScene().getWindow()).close(); // Close current
+        ((Stage) rootPane.getScene().getWindow()).close();
     }
 
     @FXML public void handleImport() {
