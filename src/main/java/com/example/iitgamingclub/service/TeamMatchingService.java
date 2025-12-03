@@ -5,15 +5,12 @@ import com.example.iitgamingclub.model.Team;
 import java.util.*;
 import java.util.stream.Collectors;
 
-/**
- * Class: TeamMatchingService
- * Logic: Implements the logic to form balanced teams based on roles, personality, and skill.
- */
 public class TeamMatchingService {
 
     public List<Team> generateTeams(List<Participant> sourceData, int teamSize) {
         List<Participant> pool = new ArrayList<>(sourceData);
-        // Sort pool by skill (descending) to prioritize placing strong players
+
+        //sort by skill (descending) to prioritize placing strong players
         pool.sort(Comparator.comparingInt(Participant::getSkillLevel).reversed());
 
         int totalPlayers = pool.size();
@@ -24,19 +21,19 @@ public class TeamMatchingService {
             teams.add(new Team(i + 1));
         }
 
-        // 1. Distribute Leaders (1 per team)
+        //distribute leaders
         List<Participant> leaders = extractByType(pool, "Leader");
         roundRobinDistribute(teams, leaders, 1);
 
-        // 2. Distribute Thinkers (2 per team)
+        //distribute thinkers
         List<Participant> thinkers = extractByType(pool, "Thinker");
         roundRobinDistribute(teams, thinkers, 2);
 
-        // 3. Fill with Balanced and remaining (Fill to teamSize)
+        //fill with balanced and remaining
         roundRobinDistribute(teams, pool, teamSize);
 
-        // 4. Handle Remainders (If any unassigned remain due to constraints)
-        // If the loop finished but 'pool' still has people, force assign them
+        //handle remainders
+        //if the loop finished but pool still has people, force assign them
         if(!pool.isEmpty()) {
             // Sort teams by size (smallest first)
             teams.sort(Comparator.comparingInt(Team::getMemberCount));

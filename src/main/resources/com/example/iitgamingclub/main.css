@@ -1,9 +1,4 @@
-/* GLOBAL STYLES */
-.root {
-    -fx-background-color: black;
-}
-
-/* --- BUTTON STYLES --- */
+/*general buttons*/
 .button-normal {
     -fx-background-color: transparent;
     -fx-border-color: white;
@@ -23,6 +18,7 @@
     -fx-border-color: white;
 }
 
+/*team generate button*/
 .button-generate {
     -fx-background-color: transparent;
     -fx-border-color: #cfff04;
@@ -42,6 +38,7 @@
     -fx-border-color: #cfff04;
 }
 
+/*exit button*/
 .button-exit {
     -fx-background-color: transparent;
     -fx-border-color: red;
@@ -61,7 +58,7 @@
     -fx-border-color: red;
 }
 
-/* --- TITLE BAR BUTTONS --- */
+/*custom windows buttons (minimize, maximize and close)*/
 .window-btn {
     -fx-background-color: transparent;
     -fx-text-fill: #aaaaaa;
@@ -73,8 +70,8 @@
 }
 
 .window-btn:hover {
-    -fx-background-color: #333333;
-    -fx-text-fill: white;
+    -fx-background-color: #cfff04;
+    -fx-text-fill: black;
 }
 
 .window-btn-close {
@@ -92,19 +89,7 @@
     -fx-text-fill: white;
 }
 
-/* --- FORM INPUTS --- */
-.text-field-gamer {
-    -fx-background-color: rgba(0,0,0,0.5);
-    -fx-text-fill: white;
-    -fx-border-color: #cfff04;
-    -fx-border-radius: 50;
-    -fx-background-radius: 50;
-    -fx-border-width: 2;
-    -fx-font-family: "Consolas";
-    -fx-font-size: 14px;
-    -fx-padding: 10 20;
-}
-
+/*combo box style*/
 .combo-box-gamer {
     -fx-background-color: rgba(0,0,0,0.5);
     -fx-border-color: #cfff04;
@@ -112,10 +97,12 @@
     -fx-background-radius: 50;
     -fx-border-width: 2;
 }
+
 .combo-box-gamer .cell {
     -fx-text-fill: white;
 }
-/* Fix for ComboBox popup list color */
+
+/*combo box list style*/
 .combo-box-popup .list-view {
     -fx-background-color: #222;
     -fx-text-fill: white;
@@ -128,18 +115,19 @@
     -fx-text-fill: black;
 }
 
-/* --- TABLE VIEW --- */
+/*table style*/
 .table-view {
     -fx-background-color: transparent;
     -fx-border-color: #cfff04;
     -fx-border-width: 1;
 }
 .table-view .column-header-background {
-    -fx-background-color: #111;
+    -fx-background-color: black;
 }
 .table-view .column-header .label {
-    -fx-text-fill: #cfff04;
+    -fx-text-fill: black;
     -fx-font-family: "Consolas";
+    -fx-font-weight: bold;
 }
 .table-row-cell {
     -fx-background-color: #111;
@@ -157,21 +145,21 @@
     -fx-font-family: "Consolas";
 }
 
-/* GLOBAL STYLES & DEFAULT FONT */
+/*overall general style*/
 .root {
     -fx-background-color: black;
-    -fx-font-family: "Consolas"; /* Sets Consolas for the entire app */
+    -fx-font-family: "Consolas";
     -fx-text-fill: white;
 }
 
-/* --- HEADER STYLE (ROG FONT) --- */
+/*header with ROG font*/
 .header-label {
     -fx-font-family: "ROGFonts-Regular";
     -fx-text-fill: #cfff04;
     -fx-font-size: 24px;
 }
 
-/* --- COMBO BOX STYLING (Black BG + Neon Text) --- */
+/*combo box style*/
 .combo-box-gamer {
     -fx-background-color: black;
     -fx-border-color: #cfff04;
@@ -181,14 +169,14 @@
     -fx-prompt-text-fill: #aaaaaa;
 }
 
-/* The text inside the combo box button */
+/*combo box text style*/
 .combo-box-gamer .cell {
     -fx-text-fill: #cfff04; /* Neon Yellow Text */
     -fx-background-color: transparent;
     -fx-font-family: "Consolas";
 }
 
-/* The arrow button */
+/*arrow button*/
 .combo-box-gamer .arrow {
     -fx-background-color: #cfff04;
 }
@@ -196,14 +184,13 @@
     -fx-background-color: transparent;
 }
 
-/* --- THE DROPDOWN POPUP LIST --- */
+/*dropdown popup list styl;e*/
 .combo-box-popup .list-view {
     -fx-background-color: black;
     -fx-border-color: #cfff04;
     -fx-border-width: 1;
 }
 
-/* Items in the dropdown */
 .combo-box-popup .list-cell {
     -fx-text-fill: #cfff04; /* Neon Yellow Text */
     -fx-background-color: black;
@@ -211,13 +198,13 @@
     -fx-padding: 5 10 5 10;
 }
 
-/* Hover state for dropdown items */
+/*hover for dropdown items*/
 .combo-box-popup .list-cell:filled:hover {
     -fx-background-color: #cfff04;
     -fx-text-fill: black; /* Black text on Neon background when hovering */
 }
 
-/* --- TEXT FIELDS --- */
+/*text field general style*/
 .text-field-gamer {
     -fx-background-color: rgba(0,0,0,0.5);
     -fx-text-fill: white; /* Input text color */
@@ -230,13 +217,12 @@
     -fx-padding: 10 20;
 }
 
-/* --- BUTTONS --- */
+/*buttons general*/
 .button-normal, .button-generate, .button-exit, .window-btn, .window-btn-close {
     -fx-font-family: "Consolas";
     -fx-font-weight: bold;
 }
 
-/* (Include your previous button colors here, forcing Consolas) */
 .button-generate {
     -fx-background-color: transparent;
     -fx-border-color: #cfff04;

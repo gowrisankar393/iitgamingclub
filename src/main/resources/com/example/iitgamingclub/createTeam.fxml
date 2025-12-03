@@ -1,8 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
 <StackPane fx:id="rootPane" prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: black;" stylesheets="@main.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.iitgamingclub.controller.createTeamController">
@@ -10,10 +19,9 @@
         <ImageView blendMode="LIGHTEN" fitHeight="${rootPane.height}" fitWidth="${rootPane.width}" managed="false" preserveRatio="false"><image><Image url="@media/background.jpg" /></image><opacity>0.2</opacity></ImageView>
         <BorderPane>
             <top>
-                <HBox alignment="CENTER_RIGHT" onMouseDragged="#handleMouseDragged" onMousePressed="#handleMousePressed" prefHeight="40.0" spacing="10.0" style="-fx-background-color: rgba(0,0,0,0.8); -fx-border-color: #333; -fx-border-width: 0 0 1 0;">
+                <HBox alignment="CENTER_RIGHT" onMouseDragged="#handleMouseDragged" onMousePressed="#handleMousePressed" prefHeight="40.0" spacing="10.0" style="-fx-background-color: transparent;">
                     <padding><Insets left="15.0" right="15.0" /></padding>
                     <children>
-                        <Label maxWidth="Infinity" text="Generate Teams" textFill="#888888" HBox.hgrow="ALWAYS"><font><Font name="Consolas" size="14.0" /></font></Label>
                         <Button onMouseClicked="#handleMinimize" styleClass="window-btn" text="_" />
                         <Button onMouseClicked="#handleMaximize" styleClass="window-btn" text="[ ]" />
                         <Button onMouseClicked="#cancel" styleClass="window-btn-close" text="X" />
@@ -21,15 +29,21 @@
                 </HBox>
             </top>
             <center>
-                <VBox spacing="15" alignment="CENTER" style="-fx-padding: 30;">
-                    <Label text="&lt;&lt;&lt; TEAM GENERATOR &gt;&gt;&gt;" textFill="#cfff04"><font><Font name="ROGFonts-Regular" size="24.0" /></font></Label>
-                    <HBox spacing="15" alignment="CENTER">
-                        <ComboBox fx:id="cmbFiles" promptText="Select Source File" styleClass="combo-box-gamer" prefWidth="250"/>
-                        <TextField fx:id="txtTeamSize" promptText="Size (N)" styleClass="text-field-gamer" prefWidth="100"/>
-                        <Button text="GENERATE" onAction="#generate" styleClass="button-generate"/>
+                <VBox alignment="CENTER" spacing="15" style="-fx-padding: 30;">
+                    <Label prefHeight="84.0" prefWidth="770.0" text="&lt;&lt;&lt; TEAM GENERATOR &gt;&gt;&gt;" textFill="#cfff04"><font><Font name="ROGFonts-Regular" size="49.0" /></font></Label>
+                    <HBox alignment="CENTER" spacing="15">
+                        <ComboBox fx:id="cmbFiles" maxHeight="40.0" prefHeight="40.0" prefWidth="250" promptText="Select Source File" styleClass="combo-box-gamer">
+                     <padding>
+                        <Insets left="10.0" />
+                     </padding></ComboBox>
+                        <TextField fx:id="txtTeamSize" alignment="CENTER" prefHeight="41.0" prefWidth="116.0" promptText="Size (N)" styleClass="text-field-gamer" text="Team Size" />
+                        <Button onAction="#generate" styleClass="button-generate" text="Generate Teams" />
                     </HBox>
-                    <TextArea fx:id="txtOutput" VBox.vgrow="ALWAYS" editable="false" style="-fx-control-inner-background: #111; -fx-text-fill: white; -fx-font-family: 'Consolas'; -fx-font-size: 14px;"/>
-                    <Button text="BACK" onAction="#cancel" styleClass="button-normal"/>
+                    <TextArea fx:id="txtOutput" editable="false" style="-fx-control-inner-background: #111; -fx-text-fill: white; -fx-font-family: 'Consolas'; -fx-font-size: 14px;" VBox.vgrow="ALWAYS" />
+                    <Button maxWidth="150.0" minWidth="150.0" onAction="#cancel" prefHeight="38.0" prefWidth="150.0" styleClass="button-normal" text="Back" />
+               <BorderPane.margin>
+                  <Insets top="-15.0" />
+               </BorderPane.margin>
                 </VBox>
             </center>
         </BorderPane>

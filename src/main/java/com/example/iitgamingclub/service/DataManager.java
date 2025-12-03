@@ -4,11 +4,6 @@ import com.example.iitgamingclub.model.Participant;
 import java.io.*;
 import java.util.*;
 
-/**
- * Class: DataManager
- * Pattern: Singleton
- * Handles all File I/O operations (Import/Export/Save).
- */
 public class DataManager {
     private static DataManager instance;
     private Map<String, List<Participant>> loadedFiles;
@@ -24,21 +19,18 @@ public class DataManager {
     }
 
     public void importFile(File file) throws IOException {
+        //check for only csv files
         if (!file.getName().toLowerCase().endsWith(".csv")) {
-            throw new IllegalArgumentException("Format is not supported. Please import a CSV file");
+            throw new IllegalArgumentException("Format is not supported. Please import a CSV file"); //if file is not a csv
         }
 
         List<Participant> participants = new ArrayList<>();
         try (BufferedReader br = new BufferedReader(new FileReader(file))) {
-            String line = br.readLine(); // Read header
+            String line = br.readLine(); //read header
             while ((line = br.readLine()) != null) {
                 String[] data = line.split(",");
                 if (data.length >= 8) {
-                    participants.add(new Participant(
-                            data[0].trim(), data[1].trim(), data[2].trim(), data[3].trim(),
-                            Integer.parseInt(data[4].trim()), data[5].trim(),
-                            Integer.parseInt(data[6].trim()), data[7].trim()
-                    ));
+                    participants.add(new Participant(data[0].trim(), data[1].trim(), data[2].trim(), data[3].trim(), Integer.parseInt(data[4].trim()), data[5].trim(), Integer.parseInt(data[6].trim()), data[7].trim()));
                 }
             }
         }

@@ -28,14 +28,17 @@
          </top>
          <center>
             <VBox alignment="CENTER" maxWidth="600.0" spacing="20.0">
-               <Label alignment="CENTER" prefHeight="69.0" prefWidth="599.0" text="IIT Gaming Club" textAlignment="CENTER" textFill="#cfff04"><font><Font name="ROGFonts-Regular" size="49.0" /></font></Label>
-               <Button onAction="#goToAdd" prefHeight="50.0" prefWidth="400.0" styleClass="button-normal" text="Add Participant" />
-               <Button onAction="#goToRemove" prefHeight="50.0" prefWidth="400.0" styleClass="button-normal" text="Remove Participant" />
-               <Button onAction="#goToUpdate" prefHeight="50.0" prefWidth="400.0" styleClass="button-normal" text="Update Participant" />
-               <Button onAction="#goToShow" prefHeight="50.0" prefWidth="400.0" styleClass="button-normal" text="Show All Participants" />
-               <Button onAction="#handleImport" prefHeight="50.0" prefWidth="400.0" styleClass="button-normal" text="Import CSV" />
-               <Button onAction="#goToGenerate" prefHeight="50.0" prefWidth="400.0" styleClass="button-generate" text="Generate Teams" />
-               <Button onAction="#handleExit" prefHeight="50.0" prefWidth="400.0" styleClass="button-exit" text="Exit" />
+               <Label alignment="CENTER" prefHeight="91.0" prefWidth="599.0" text="IIT Gaming Club" textAlignment="CENTER" textFill="#cfff04"><font><Font name="ROGFonts-Regular" size="49.0" /></font>
+                  <VBox.margin>
+                     <Insets top="-20.0" />
+                  </VBox.margin></Label>
+               <Button onAction="#goToAdd" prefHeight="50.0" prefWidth="400.0" style="-fx-border-width: 2;" styleClass="button-normal" text="Add Participant" />
+               <Button onAction="#goToRemove" prefHeight="50.0" prefWidth="400.0" style="-fx-border-width: 2;" styleClass="button-normal" text="Remove Participant" />
+               <Button onAction="#goToUpdate" prefHeight="50.0" prefWidth="400.0" style="-fx-border-width: 2;" styleClass="button-normal" text="Update Participant" />
+               <Button onAction="#goToShow" prefHeight="50.0" prefWidth="400.0" style="-fx-border-width: 2;" styleClass="button-normal" text="Show All Participants" />
+               <Button onAction="#handleImport" prefHeight="50.0" prefWidth="400.0" style="-fx-border-width: 2;" styleClass="button-normal" text="Import CSV" />
+               <Button onAction="#goToGenerate" prefHeight="50.0" prefWidth="400.0" style="-fx-border-width: 2;" styleClass="button-generate" text="Generate Teams" />
+               <Button onAction="#handleExit" prefHeight="50.0" prefWidth="400.0" style="-fx-border-width: 2;" styleClass="button-exit" text="Exit" />
             </VBox>
          </center>
       </BorderPane>

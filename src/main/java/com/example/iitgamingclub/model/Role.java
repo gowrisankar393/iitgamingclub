@@ -5,7 +5,7 @@ public enum Role {
 
     @Override
     public String toString() {
-        // Capitalize first letter
+        //capitalize first letter
         return name().charAt(0) + name().substring(1).toLowerCase();
     }
 }

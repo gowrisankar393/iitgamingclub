@@ -14,15 +14,15 @@ public class IITGamingClub extends Application {
     public void start(Stage primaryStage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("/com/example/iitgamingclub/iitGamingClub.fxml"));
 
-        // 1. Remove the default OS Window Frame (White Title Bar)
+        //remove the default windows title bar
         primaryStage.initStyle(StageStyle.UNDECORATED);
-        // Optional: Allows transparent rounded corners if you want them later
+        //make the stage transparent as it helps to add my own elements without interfering
         primaryStage.initStyle(StageStyle.TRANSPARENT);
-
+        //window name
         primaryStage.setTitle("IIT Gaming Club");
 
-        Scene scene = new Scene(root, 1280, 720);
-        // Set scene fill to transparent to support custom shapes if needed
+        Scene scene = new Scene(root, 1280, 720); //screen size optimized for HD resolution
+        //setting screen color as transparent
         scene.setFill(Color.TRANSPARENT);
 
         primaryStage.setScene(scene);

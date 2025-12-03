@@ -1,8 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
 <StackPane fx:id="rootPane" prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: black;" stylesheets="@main.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.iitgamingclub.controller.removeParticipantsController">
@@ -10,10 +17,9 @@
         <ImageView blendMode="LIGHTEN" fitHeight="${rootPane.height}" fitWidth="${rootPane.width}" managed="false" preserveRatio="false"><image><Image url="@media/background.jpg" /></image><opacity>0.2</opacity></ImageView>
         <BorderPane>
             <top>
-                <HBox alignment="CENTER_RIGHT" onMouseDragged="#handleMouseDragged" onMousePressed="#handleMousePressed" prefHeight="40.0" spacing="10.0" style="-fx-background-color: rgba(0,0,0,0.8); -fx-border-color: #333; -fx-border-width: 0 0 1 0;">
+                <HBox alignment="CENTER_RIGHT" onMouseDragged="#handleMouseDragged" onMousePressed="#handleMousePressed" prefHeight="40.0" spacing="10.0" style="-fx-background-color: transparent;">
                     <padding><Insets left="15.0" right="15.0" /></padding>
                     <children>
-                        <Label maxWidth="Infinity" text="Remove Participant" textFill="#888888" HBox.hgrow="ALWAYS"><font><Font name="Consolas" size="14.0" /></font></Label>
                         <Button onMouseClicked="#handleMinimize" styleClass="window-btn" text="_" />
                         <Button onMouseClicked="#handleMaximize" styleClass="window-btn" text="[ ]" />
                         <Button onMouseClicked="#cancel" styleClass="window-btn-close" text="X" />
@@ -21,12 +27,20 @@
                 </HBox>
             </top>
             <center>
-                <VBox alignment="CENTER" spacing="20.0" maxWidth="500">
-                    <Label text="&lt;&lt;&lt; REMOVE &gt;&gt;&gt;" textFill="#ff5555"><font><Font name="ROGFonts-Regular" size="24.0" /></font></Label>
-                    <TextField fx:id="txtSearchId" promptText="Enter ID" styleClass="text-field-gamer" alignment="CENTER"/>
-                    <Button text="SEARCH &amp; DELETE" onAction="#searchAndDelete" styleClass="button-exit" maxWidth="Infinity"/>
-                    <Label fx:id="lblInfo" textFill="white"><font><Font name="Consolas" size="14"/></font></Label>
-                    <Button text="BACK" onAction="#cancel" styleClass="button-normal" maxWidth="200"/>
+                <VBox alignment="CENTER" maxWidth="971.0" prefHeight="680.0" prefWidth="971.0" spacing="20.0">
+                    <Label alignment="CENTER" prefHeight="69.0" prefWidth="973.0" text="&lt;&lt;&lt; REMOVE PARTICIPANT &gt;&gt;&gt;" textFill="RED"><font><Font name="ROGFonts-Regular" size="49.0" /></font></Label>
+               <Label fx:id="lblInfo1" textFill="white">
+                  <font>
+                     <Font name="Consolas" size="14" />
+                  </font>
+               </Label>
+                    <TextField fx:id="txtSearchId" alignment="CENTER" maxWidth="500.0" prefHeight="39.0" prefWidth="500.0" promptText="Enter ID" style="-fx-border-width: 3;" styleClass="text-field-gamer">
+                  <font>
+                     <Font name="Consolas Bold" size="12.0" />
+                  </font></TextField>
+                    <Label fx:id="lblInfo" textFill="#cfff04"><font><Font name="Consolas" size="14" /></font></Label>
+                    <Button maxWidth="250.0" minWidth="200.0" onAction="#searchAndDelete" prefHeight="38.0" prefWidth="200.0" style="-fx-border-width: 3;" styleClass="button-exit" text="Remove Participant" />
+                    <Button maxWidth="250.0" onAction="#cancel" style="-fx-border-width: 2.5;" styleClass="button-normal" text="Back" />
                 </VBox>
             </center>
         </BorderPane>

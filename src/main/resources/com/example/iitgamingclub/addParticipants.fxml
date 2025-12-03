@@ -7,6 +7,7 @@
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.Slider?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.Bloom?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
@@ -22,10 +23,9 @@
         </ImageView>
         <BorderPane>
             <top>
-                <HBox alignment="CENTER_RIGHT" onMouseDragged="#handleMouseDragged" onMousePressed="#handleMousePressed" prefHeight="40.0" spacing="10.0" style="-fx-background-color: rgba(0,0,0,0.8); -fx-border-color: #333; -fx-border-width: 0 0 1 0;">
+                <HBox alignment="CENTER_RIGHT" onMouseDragged="#handleMouseDragged" onMousePressed="#handleMousePressed" prefHeight="40.0" spacing="10.0" style="-fx-background-color: transparent;">
                     <padding><Insets left="15.0" right="15.0" /></padding>
                     <children>
-                        <Label maxWidth="Infinity" text="Add Participant" textFill="#888888" HBox.hgrow="ALWAYS"><font><Font name="Consolas" size="14.0" /></font></Label>
                         <Button onMouseClicked="#handleMinimize" styleClass="window-btn" text="_" />
                         <Button onMouseClicked="#handleMaximize" styleClass="window-btn" text="[ ]" />
                         <Button onMouseClicked="#cancel" styleClass="window-btn-close" text="X" />
@@ -37,25 +37,81 @@
                     <content>
                         <VBox alignment="TOP_CENTER" spacing="15.0" style="-fx-background-color: transparent;">
                             <padding><Insets bottom="30" top="30" /></padding>
-                            <VBox alignment="TOP_CENTER" maxWidth="700.0" spacing="15.0">
-                                <Label text="&lt;&lt;&lt; ADD PARTICIPANT &gt;&gt;&gt;" textFill="#cfff04"><font><Font name="ROGFonts-Regular" size="36.0" /></font></Label>
+                            <VBox alignment="TOP_CENTER" maxWidth="820.0" prefHeight="936.0" prefWidth="820.0" spacing="15.0">
+                                <Label alignment="CENTER" prefHeight="14.0" prefWidth="959.0" text="&lt;&lt;&lt; ADD PARTICIPANT &gt;&gt;&gt;" textAlignment="CENTER" textFill="#cfff04"><font><Font name="ROGFonts-Regular" size="49.0" /></font></Label>
+                        <Label prefHeight="0.0" prefWidth="2.0" textFill="#cfff04">
+                           <font>
+                              <Font name="ROGFonts-Regular" size="10.0" />
+                           </font>
+                        </Label>
                                 <TextField fx:id="txtName" prefHeight="41.0" prefWidth="722.0" promptText="Full Name" styleClass="text-field-gamer" />
                                 <TextField fx:id="txtEmail" prefHeight="41.0" prefWidth="709.0" promptText="Email" styleClass="text-field-gamer" />
-                                <HBox spacing="15"><ComboBox fx:id="cmbGame" maxWidth="Infinity" prefHeight="40.0" prefWidth="534.0" promptText="Game" styleClass="combo-box-gamer" HBox.hgrow="ALWAYS" /><TextField fx:id="txtSkill" prefWidth="150" promptText="Skill (1-10)" styleClass="text-field-gamer" /></HBox>
-                                <ComboBox fx:id="cmbRole" maxWidth="Infinity" prefHeight="40.0" promptText="Role" styleClass="combo-box-gamer" />
-                                <Label text="-- SURVEY --" textFill="white" underline="true"><font><Font name="ROGFonts-Regular" size="14" /></font></Label>
-                                <Label text="Q1: I enjoy taking the lead." textFill="#aaa"><font><Font name="Consolas" size="14" /></font></Label><Slider fx:id="q1" blockIncrement="1" majorTickUnit="1" max="5" min="1" showTickLabels="true" showTickMarks="true" snapToTicks="true" />
-                                <Label text="Q2: I prefer analyzing situations." textFill="#aaa"><font><Font name="Consolas" size="14" /></font></Label><Slider fx:id="q2" blockIncrement="1" majorTickUnit="1" max="5" min="1" showTickLabels="true" showTickMarks="true" snapToTicks="true" />
-                                <Label text="Q3: I work well with others." textFill="#aaa"><font><Font name="Consolas" size="14" /></font></Label><Slider fx:id="q3" blockIncrement="1" majorTickUnit="1" max="5" min="1" showTickLabels="true" showTickMarks="true" snapToTicks="true" />
-                                <Label text="Q4: I am calm under pressure." textFill="#aaa"><font><Font name="Consolas" size="14" /></font></Label><Slider fx:id="q4" blockIncrement="1" majorTickUnit="1" max="5" min="1" showTickLabels="true" showTickMarks="true" snapToTicks="true" />
-                                <Label text="Q5: I like making quick decisions." textFill="#aaa"><font><Font name="Consolas" size="14" /></font></Label><Slider fx:id="q5" blockIncrement="1" majorTickUnit="1" max="5" min="1" showTickLabels="true" showTickMarks="true" snapToTicks="true" />
+                                <HBox spacing="15"><ComboBox fx:id="cmbGame" maxWidth="Infinity" prefHeight="40.0" prefWidth="534.0" promptText="Game" styleClass="combo-box-gamer" HBox.hgrow="ALWAYS">
+                              <HBox.margin>
+                                 <Insets />
+                              </HBox.margin>
+                              <padding>
+                                 <Insets left="10.0" />
+                              </padding></ComboBox><TextField fx:id="txtSkill" prefWidth="150" promptText="Skill (1-10)" styleClass="text-field-gamer" /></HBox>
+                                <ComboBox fx:id="cmbRole" maxHeight="40.0" maxWidth="Infinity" minHeight="40.0" prefHeight="40.0" promptText="Role" styleClass="combo-box-gamer">
+                           <padding>
+                              <Insets left="10.0" />
+                           </padding></ComboBox>
+                        <Label textFill="#cfff04">
+                           <font>
+                              <Font name="ROGFonts-Regular" size="10.0" />
+                           </font>
+                        </Label>
+                        <Label text="PERSONALITY SURVEY" textFill="WHITE">
+                           <font>
+                              <Font name="ROGFonts-Regular" size="26.0" />
+                           </font>
+                        </Label>
+                        <Label textFill="#cfff04">
+                           <font>
+                              <Font name="ROGFonts-Regular" size="10.0" />
+                           </font>
+                        </Label>
+                                <Label text="Q1: I enjoy taking the lead." textFill="#aaa"><font><Font name="Consolas" size="17.0" /></font></Label><Slider fx:id="q1" blockIncrement="1" majorTickUnit="1" max="5" min="1" showTickLabels="true" showTickMarks="true" snapToTicks="true">
+                           <effect>
+                              <Bloom />
+                           </effect></Slider>
+                                <Label text="Q2: I prefer analyzing situations." textFill="#aaa"><font><Font name="Consolas" size="17.0" /></font></Label><Slider fx:id="q2" blockIncrement="1" majorTickUnit="1" max="5" min="1" showTickLabels="true" showTickMarks="true" snapToTicks="true">
+                           <effect>
+                              <Bloom />
+                           </effect></Slider>
+                                <Label text="Q3: I work well with others." textFill="#aaa"><font><Font name="Consolas" size="17.0" /></font></Label><Slider fx:id="q3" blockIncrement="1" majorTickUnit="1" max="5" min="1" showTickLabels="true" showTickMarks="true" snapToTicks="true">
+                           <effect>
+                              <Bloom />
+                           </effect></Slider>
+                                <Label text="Q4: I am calm under pressure." textFill="#aaa"><font><Font name="Consolas" size="17.0" /></font></Label><Slider fx:id="q4" blockIncrement="1" majorTickUnit="1" max="5" min="1" showTickLabels="true" showTickMarks="true" snapToTicks="true">
+                           <effect>
+                              <Bloom />
+                           </effect></Slider>
+                                <Label text="Q5: I like making quick decisions." textFill="#aaa"><font><Font name="Consolas" size="17.0" /></font></Label><Slider fx:id="q5" blockIncrement="1" majorTickUnit="1" max="5" min="1" showTickLabels="true" showTickMarks="true" snapToTicks="true">
+                           <effect>
+                              <Bloom />
+                           </effect></Slider>
+                        <Label maxHeight="10.0" minHeight="10.0" prefHeight="10.0" textFill="#cfff04">
+                           <font>
+                              <Font name="ROGFonts-Regular" size="42.0" />
+                           </font>
+                        </Label>
                                 <Button maxWidth="Infinity" onAction="#calculatePersonality" styleClass="button-generate" text="CALCULATE SCORE" />
                                 <Label fx:id="lblResult" text="..." textFill="white"><font><Font name="Consolas Bold" size="16" /></font></Label>
+                        <Label textFill="#cfff04">
+                           <font>
+                              <Font name="ROGFonts-Regular" size="42.0" />
+                           </font>
+                        </Label>
                                 <HBox alignment="CENTER_RIGHT" spacing="15">
-                                    <Button onAction="#cancel" prefHeight="38.0" prefWidth="111.0" styleClass="button-exit" text="Cancel" />
-                           <Label prefHeight="17.0" prefWidth="264.0" />
+                                    <Button onAction="#cancel" prefHeight="38.0" prefWidth="111.0" styleClass="button-exit" text="Back" />
+                           <Label prefHeight="17.0" prefWidth="359.0" />
                                     <Button fx:id="btnSave" disable="true" onAction="#saveParticipant" prefHeight="38.0" prefWidth="321.0" styleClass="button-generate" text="Add Participant" />
                                 </HBox>
+                        <VBox.margin>
+                           <Insets top="-15.0" />
+                        </VBox.margin>
                             </VBox>
                         </VBox>
                     </content>
