@@ -36,7 +36,7 @@
                <Button onAction="#goToRemove" prefHeight="50.0" prefWidth="400.0" style="-fx-border-width: 2;" styleClass="button-normal" text="Remove Participant" />
                <Button onAction="#goToUpdate" prefHeight="50.0" prefWidth="400.0" style="-fx-border-width: 2;" styleClass="button-normal" text="Update Participant" />
                <Button onAction="#goToShow" prefHeight="50.0" prefWidth="400.0" style="-fx-border-width: 2;" styleClass="button-normal" text="Show All Participants" />
-               <Button onAction="#handleImport" prefHeight="50.0" prefWidth="400.0" style="-fx-border-width: 2;" styleClass="button-normal" text="Import CSV" />
+               <Button onAction="#handleImport" prefHeight="50.0" prefWidth="400.0" style="-fx-border-width: 2;" styleClass="button-normal" text="Import Participant Files" />
                <Button onAction="#goToGenerate" prefHeight="50.0" prefWidth="400.0" style="-fx-border-width: 2;" styleClass="button-generate" text="Generate Teams" />
                <Button onAction="#handleExit" prefHeight="50.0" prefWidth="400.0" style="-fx-border-width: 2;" styleClass="button-exit" text="Exit" />
             </VBox>

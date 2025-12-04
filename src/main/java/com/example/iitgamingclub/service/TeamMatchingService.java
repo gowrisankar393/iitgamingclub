@@ -7,46 +7,47 @@ import java.util.stream.Collectors;
 
 public class TeamMatchingService {
 
-    public List<Team> generateTeams(List<Participant> sourceData, int teamSize) {
-        List<Participant> pool = new ArrayList<>(sourceData);
+    public List<Team> generateTeams(List<Participant> sourceData, int targetSize) {
+        //create a working copy of the pool
+        List<Participant> mainPool = new ArrayList<>(sourceData);
 
-        //sort by skill (descending) to prioritize placing strong players
-        pool.sort(Comparator.comparingInt(Participant::getSkillLevel).reversed());
+        //sort by skill (strongest first) for better distribution
+        mainPool.sort(Comparator.comparingInt(Participant::getSkillLevel).reversed());
 
-        int totalPlayers = pool.size();
-        int numTeams = (int) Math.ceil((double) totalPlayers / teamSize);
+        int totalPlayers = mainPool.size();
+
+        //team size calculation
+        int numTeams = Math.max(1, totalPlayers / targetSize);
 
         List<Team> teams = new ArrayList<>();
         for (int i = 0; i < numTeams; i++) {
             teams.add(new Team(i + 1));
         }
 
-        //distribute leaders
-        List<Participant> leaders = extractByType(pool, "Leader");
-        roundRobinDistribute(teams, leaders, 1);
+        //distribute leaders first
+        List<Participant> leaders = extractByType(mainPool, "Leader");
+        //1 leader per team.
+        List<Participant> unassignedLeaders = roundRobinDistribute(teams, leaders, 1);
 
         //distribute thinkers
-        List<Participant> thinkers = extractByType(pool, "Thinker");
-        roundRobinDistribute(teams, thinkers, 2);
+        List<Participant> thinkers = extractByType(mainPool, "Thinker");
+        //up to 2 thinkers per team.
+        List<Participant> unassignedThinkers = roundRobinDistribute(teams, thinkers, 2);
 
-        //fill with balanced and remaining
-        roundRobinDistribute(teams, pool, teamSize);
+        //fill the rest with the rest if the leaders and thinkers
+        mainPool.addAll(unassignedLeaders);
+        mainPool.addAll(unassignedThinkers);
 
-        //handle remainders
-        //if the loop finished but pool still has people, force assign them
-        if(!pool.isEmpty()) {
-            //sort teams by size (smallest first)
-            teams.sort(Comparator.comparingInt(Team::getMemberCount));
-            for(Participant p : pool) {
-                teams.get(0).addMember(p); // Add to smallest
-                //re sort to keep balancing
-                teams.sort(Comparator.comparingInt(Team::getMemberCount));
-            }
-        }
+        //re sort to mix the returned leaders/thinkers properly by skill (previous issue was that once leaders and thinkers were set, they did not get added to the teams which resulted in less members per team)
+        mainPool.sort(Comparator.comparingInt(Participant::getSkillLevel).reversed());
+
+        //fill teams until everyone is assigned (we use round robbin method)
+        roundRobinDistribute(teams, mainPool, Integer.MAX_VALUE);
 
         return teams;
     }
 
+    //remove specific types from the main pool so they can be handled separately
     private List<Participant> extractByType(List<Participant> pool, String type) {
         List<Participant> extracted = pool.stream()
                 .filter(p -> p.getPersonalityType().equalsIgnoreCase(type))
@@ -55,43 +56,51 @@ public class TeamMatchingService {
         return extracted;
     }
 
-    private void roundRobinDistribute(List<Team> teams, List<Participant> players, int limit) {
-        //sort players by skill to balance teams
-        players.sort(Comparator.comparingInt(Participant::getSkillLevel).reversed());
-
+    //distributes players to teams and returns a list of players who could not be assigned due to limits/constraints
+    private List<Participant> roundRobinDistribute(List<Team> teams, List<Participant> players, int limitPerTeam) {
+        List<Participant> unassigned = new ArrayList<>();
         int teamIndex = 0;
-        Iterator<Participant> it = players.iterator();
 
-        while (it.hasNext()) {
-            Participant p = it.next();
+        for (Participant p : players) {
             boolean assigned = false;
 
-            //try to find a valid team
+            //try every team once (starting from current index for round robin method)
             for (int i = 0; i < teams.size(); i++) {
                 Team t = teams.get((teamIndex + i) % teams.size());
 
-                //check game variety (max 2 of same game)
+                //constraint check 1 - team limit (skip if this phase's limit is reached)
+                if (t.getMemberCount() >= limitPerTeam) {
+                    continue;
+                }
+
+                //constraint check 2 - game variety (max 2 of same game)
                 long sameGameCount = t.getMembers().stream()
                         .filter(m -> m.getPreferredGame().equalsIgnoreCase(p.getPreferredGame()))
                         .count();
 
-                //check if team has space (based on the current phase limit). if limit >= 5 we are in filling phase, so strict role limits are relaxed, just fill capacity
-                if ((t.getMemberCount() < limit || limit >= 5) && sameGameCount < 2) {
+                if (sameGameCount < 2) {
                     t.addMember(p);
-                    it.remove();
                     assigned = true;
-                    teamIndex++;
+                    teamIndex++; //move to next team for next player
                     break;
                 }
             }
 
-            //if strictly filling and constraints block it, force assignment to avoid stragglers (only applies in the final phase where limit is high)
-            if (!assigned && limit >= 5) {
-                //find smallest team
-                Team smallest = teams.stream().min(Comparator.comparingInt(Team::getMemberCount)).orElse(teams.get(0));
-                smallest.addMember(p);
-                it.remove();
+            //if not assigned after trying all teams
+            if (!assigned) {
+                //if we are in the filling phase (limit is high), force assign to the smallest team. this prevents people from being left out
+                if (limitPerTeam > 5) {
+                    Team smallest = teams.stream()
+                            .min(Comparator.comparingInt(Team::getMemberCount))
+                            .orElse(teams.get(0));
+                    smallest.addMember(p);
+                } else {
+                    //if we are in priority phase (leader/thinker) save them for later
+                    unassigned.add(p);
+                }
             }
         }
+
+        return unassigned;
     }
 }

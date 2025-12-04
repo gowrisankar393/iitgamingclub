@@ -36,7 +36,7 @@
                      <padding>
                         <Insets left="10.0" />
                      </padding></ComboBox>
-                        <TextField fx:id="txtTeamSize" alignment="CENTER" prefHeight="41.0" prefWidth="116.0" promptText="Size (N)" styleClass="text-field-gamer" text="Team Size" />
+                        <TextField fx:id="txtTeamSize" alignment="CENTER" prefHeight="41.0" prefWidth="116.0" promptText="Team Size" styleClass="text-field-gamer" />
                         <Button onAction="#generate" styleClass="button-generate" text="Generate Teams" />
                     </HBox>
                     <TextArea fx:id="txtOutput" editable="false" style="-fx-control-inner-background: #111; -fx-text-fill: white; -fx-font-family: 'Consolas'; -fx-font-size: 14px;" VBox.vgrow="ALWAYS" />
