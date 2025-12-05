@@ -94,7 +94,8 @@ public class TeamMatchingService {
                             .min(Comparator.comparingInt(Team::getMemberCount))
                             .orElse(teams.get(0));
                     smallest.addMember(p);
-                } else {
+                }
+                else {
                     //if we are in priority phase (leader/thinker) save them for later
                     unassigned.add(p);
                 }

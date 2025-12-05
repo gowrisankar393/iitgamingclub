@@ -13,14 +13,17 @@ public class Team {
     }
 
     public void addMember(Participant p) {
+
         members.add(p);
     }
 
     public List<Participant> getMembers() {
+
         return members;
     }
 
     public int getMemberCount() {
+
         return members.size();
     }
 

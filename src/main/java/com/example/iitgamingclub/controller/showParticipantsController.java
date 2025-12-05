@@ -38,12 +38,16 @@ public class showParticipantsController {
     }
 
     //Window Controls
-    @FXML public void handleMousePressed(MouseEvent e) { xOffset = e.getSceneX(); yOffset = e.getSceneY(); }
+    @FXML public void handleMousePressed(MouseEvent e) {
+        xOffset = e.getSceneX(); yOffset = e.getSceneY();
+    }
     @FXML public void handleMouseDragged(MouseEvent e) {
         Stage s = (Stage) ((Node) e.getSource()).getScene().getWindow();
         s.setX(e.getScreenX() - xOffset); s.setY(e.getScreenY() - yOffset);
     }
-    @FXML public void handleMinimize(MouseEvent e) { ((Stage) ((Node) e.getSource()).getScene().getWindow()).setIconified(true); }
+    @FXML public void handleMinimize(MouseEvent e) {
+        ((Stage) ((Node) e.getSource()).getScene().getWindow()).setIconified(true);
+    }
     @FXML public void handleMaximize(MouseEvent e) {
         Stage s = (Stage) ((Node) e.getSource()).getScene().getWindow();
         s.setMaximized(!s.isMaximized());
@@ -64,6 +68,9 @@ public class showParticipantsController {
             home.setScene(new Scene(root, 1280, 720));
             home.setMaximized(true);
             home.show();
-        } catch (IOException e) { e.printStackTrace(); }
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

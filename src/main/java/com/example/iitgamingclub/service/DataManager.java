@@ -62,13 +62,19 @@ public class DataManager {
     }
 
     public List<String> getLoadedFilePaths() {
+
         return new ArrayList<>(loadedFiles.keySet());
     }
 
-    public String getCurrentActiveFile() { return currentActiveFile; }
-    public void setCurrentActiveFile(String f) { this.currentActiveFile = f; }
+    public String getCurrentActiveFile() {
+        return currentActiveFile;
+    }
+    public void setCurrentActiveFile(String f) {
+        this.currentActiveFile = f;
+    }
 
     public String generateNextId(String filePath) {
+
         return "P" + (getParticipants(filePath).size() + 101);
     }
 

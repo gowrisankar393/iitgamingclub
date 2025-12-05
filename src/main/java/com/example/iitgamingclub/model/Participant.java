@@ -26,33 +26,42 @@ public class Participant implements Comparable<Participant> {
         return id;
     }
     public String getName() {
+
         return name;
     }
     public void setName(String name) {
+
         this.name = name;
     }
     public String getEmail() {
+
         return email;
     }
     public void setEmail(String email) {
+
         this.email = email;
     }
     public String getPreferredGame() {
+
         return preferredGame;
     }
     public void setPreferredGame(String preferredGame) {
         this.preferredGame = preferredGame;
     }
     public int getSkillLevel() {
+
         return skillLevel;
     }
     public String getPreferredRole() {
+
         return preferredRole;
     }
     public int getPersonalityScore() {
+
         return personalityScore;
     }
     public String getPersonalityType() {
+
         return personalityType;
     }
 
@@ -64,6 +73,7 @@ public class Participant implements Comparable<Participant> {
 
     @Override
     public int compareTo(Participant o) {
+
         return this.id.compareTo(o.id);
     }
 

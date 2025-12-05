@@ -21,7 +21,7 @@ public class IITGamingClub extends Application {
         //window name
         primaryStage.setTitle("IIT Gaming Club");
 
-        Scene scene = new Scene(root, 1280, 720); //screen size optimized for HD resolution
+        Scene scene = new Scene(root, 1280, 720);
         //setting screen color as transparent
         scene.setFill(Color.TRANSPARENT);
 

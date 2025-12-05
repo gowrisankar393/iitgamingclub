@@ -20,18 +20,24 @@ public class iitGamingClubController {
     private double xOffset = 0, yOffset = 0;
 
     //window controls
-    @FXML public void handleMousePressed(MouseEvent event) { xOffset = event.getSceneX(); yOffset = event.getSceneY(); }
+    @FXML public void handleMousePressed(MouseEvent event) {
+        xOffset = event.getSceneX(); yOffset = event.getSceneY();
+    }
     @FXML public void handleMouseDragged(MouseEvent event) {
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setX(event.getScreenX() - xOffset);
         stage.setY(event.getScreenY() - yOffset);
     }
-    @FXML public void handleMinimize(MouseEvent e) { ((Stage) ((Node) e.getSource()).getScene().getWindow()).setIconified(true); }
+    @FXML public void handleMinimize(MouseEvent e) {
+        ((Stage) ((Node) e.getSource()).getScene().getWindow()).setIconified(true);
+    }
     @FXML public void handleMaximize(MouseEvent e) {
         Stage stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
         stage.setMaximized(!stage.isMaximized());
     }
-    @FXML public void handleExit() { System.exit(0); }
+    @FXML public void handleExit() {
+        System.exit(0);
+    }
 
     private void switchScene(String fxml) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("/com/example/iitgamingclub/" + fxml));
@@ -53,13 +59,23 @@ public class iitGamingClubController {
             try {
                 DataManager.getInstance().importFile(f);
                 new Alert(Alert.AlertType.INFORMATION, "Imported: " + f.getName()).show();
-            } catch (Exception e) { e.printStackTrace(); }
+            }
+            catch (Exception e) {
+                e.printStackTrace();
+            }
         }
     }
 
-    @FXML public void goToAdd() throws IOException { switchScene("addParticipants.fxml"); }
-    @FXML public void goToRemove() throws IOException { switchScene("removeParticipants.fxml"); }
-    @FXML public void goToUpdate() throws IOException { switchScene("updateParticipants.fxml"); }
-    @FXML public void goToShow() throws IOException { switchScene("showParticipants.fxml"); }
-    @FXML public void goToGenerate() throws IOException { switchScene("createTeam.fxml"); }
+    @FXML public void goToAdd() throws IOException {
+        switchScene("addParticipants.fxml");
+    }
+    @FXML public void goToRemove() throws IOException {
+        switchScene("removeParticipants.fxml");
+    }
+    @FXML public void goToUpdate() throws IOException {
+        switchScene("updateParticipants.fxml"); }
+    @FXML public void goToShow() throws IOException {
+        switchScene("showParticipants.fxml"); }
+    @FXML public void goToGenerate() throws IOException {
+        switchScene("createTeam.fxml"); }
 }
